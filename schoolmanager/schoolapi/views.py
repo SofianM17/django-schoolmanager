@@ -43,7 +43,7 @@ class AssignmentView(viewsets.ModelViewSet):
 
 class ExamPrepView(viewsets.ModelViewSet):
     queryset = ExamPrep.objects.all()
-    serialzer_class = ExamPrepSerializer
+    serializer_class = ExamPrepSerializer
 
 # FRONT END
 def dashboard(request):

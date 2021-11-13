@@ -44,7 +44,7 @@ class AssignmentSerializer(serializers.ModelSerializer):
 class ExamPrepSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExamPrep
-        fields = ('id', 'name', 'exam_name', 'prep_type')
+        fields = ('id', 'exam', 'prep_type')
 
 class FinanceSerializer(serializers.ModelSerializer):
     class Meta:

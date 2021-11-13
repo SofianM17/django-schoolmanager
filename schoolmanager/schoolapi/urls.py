@@ -11,7 +11,7 @@ router.register('events', views.EventView)
 router.register('exams', views.ExamView)
 router.register('homework', views.HomeworkView)
 router.register('assignment', views.AssignmentView)
-router.register('assignment', views.ExamPrepView)
+router.register('exam_prep', views.ExamPrepView)
 
 urlpatterns = [
     path('api/', include(router.urls)),

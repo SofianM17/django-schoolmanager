@@ -89,7 +89,7 @@ class Assignment(Task):
     username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 
 class ExamPrep(models.Model):
-    name = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     PREP_CHOICES = [
         ('prac_exam', 'Practice Exam'),
         ('review_sess', 'Review Session'),
