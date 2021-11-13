@@ -47,7 +47,7 @@ class ExamPrepView(viewsets.ModelViewSet):
 
 # FRONT END
 def dashboard(request):
-    response = requests.get('http://127.0.0.1:8000/api/class/')
+    response = requests.get('http://'+request.get_host()+'/api/class/')
     classes = response.json()
 
     return render(request, "schoolapi/dashboard.html", {"classes" : classes})
@@ -57,7 +57,7 @@ def addClass(request):
         form = ClassForm(request.POST)
         if form.is_valid():
             form = form.cleaned_data
-            requests.post('http://127.0.0.1:8000/api/class/', form)
+            requests.post('http://'+request.get_host()+'/api/class/', form)
         return HttpResponseRedirect("/")
             
     else:
