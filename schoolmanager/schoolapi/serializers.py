@@ -14,7 +14,7 @@ class InstructorSerializer(serializers.ModelSerializer):
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ('id', 'username', 'name', 'time', 'section', 'room')
+        fields = ('id', 'name', 'time', 'section', 'room')
 
 class ClubSerializer(serializers.ModelSerializer):
     class Meta:

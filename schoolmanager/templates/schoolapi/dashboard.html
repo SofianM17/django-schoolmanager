@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+    />
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>
+        Dashboard
+    </h1>
+    <button type="button" onclick="window.location.href='/add-class'" class="btn btn-primary btn-lg border-0">
+        Add Class
+    </button>
+    <div class="classes-container">
+        <h2 class="border-bottom border-primary">
+            Classes
+        </h2>
+        {% for class in classes %}
+        <div class="classes-item border-bottom border-primary">
+            <p>{{class.name}}
+                <br>
+                {{class.time}}
+                <br>
+                {{class.section}}
+                <br>
+                {{class.room}}
+            </p>
+            <button class="border-0 btn btn-danger btn-sm">
+                Remove Class
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+</body>
