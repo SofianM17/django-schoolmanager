@@ -79,6 +79,9 @@ def updateClass(request, id):
             requests.put('http://'+request.get_host()+'/api/class/'+id+'/', form)
         return HttpResponseRedirect("/")
     else:
-        form = ClassForm()
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/class/'+id+'/')
+        form_fields = form_fields_req.json()
+        form = ClassForm(initial={"name": form_fields['name'], "time": form_fields['time'],
+        "section": form_fields['section'], "room": form_fields['room']})
             
     return render(request, 'schoolapi/updateClass.html', {'form': form})
