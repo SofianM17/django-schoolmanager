@@ -52,6 +52,7 @@ def dashboard(request):
 
     return render(request, "schoolapi/dashboard.html", {"classes" : classes})
 
+# Class CRUD
 def addClass(request):
     if request.method == 'POST':
         form = ClassForm(request.POST)
