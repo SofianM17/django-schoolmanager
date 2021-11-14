@@ -64,3 +64,21 @@ def addClass(request):
         form = ClassForm()
             
     return render(request, 'schoolapi/addClass.html', {'form': form})
+
+def deleteClass(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/class/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def updateClass(request, id):
+    if request.method == 'POST':
+        form = ClassForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.put('http://'+request.get_host()+'/api/class/'+id+'/', form)
+        return HttpResponseRedirect("/")
+    else:
+        form = ClassForm()
+            
+    return render(request, 'schoolapi/updateClass.html', {'form': form})

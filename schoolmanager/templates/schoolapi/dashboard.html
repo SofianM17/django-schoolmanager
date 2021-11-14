@@ -27,16 +27,21 @@
         <div class="classes-item border-bottom border-primary">
             <p>{{class.name}}
                 <br>
-                {{class.time}}
+                Time: {{class.time}}
                 <br>
-                {{class.section}}
+                Section: {{class.section}}
                 <br>
-                {{class.room}}
+                Room: {{class.room}}
             </p>
-            <button class="border-0 btn btn-danger btn-sm">
-                Remove Class
-            </button>
+            <a href="{% url 'update-class' class.id%}" class=" border-0 btn btn-success">
+                Update Class
+            </a>
+            <a href="{% url 'delete-class' class.id%}" class="border-0 btn btn-danger">
+                Delete Class
+            </a>
         </div>
         {% endfor %}
+
+
     </div>
 </body>

@@ -14,7 +14,9 @@ router.register('assignment', views.AssignmentView)
 router.register('exam_prep', views.ExamPrepView)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls), name='api'),
     path('', views.dashboard),
-    path('add-class/', views.addClass)
+    path('add-class/', views.addClass),
+    path('delete-class/<id>', views.deleteClass, name='delete-class'),
+    path('update-class/<id>', views.updateClass, name='update-class'),
 ]
