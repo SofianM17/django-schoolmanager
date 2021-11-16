@@ -20,7 +20,7 @@ class ExamForm(forms.Form):
     priority = forms.CharField( label='Priority', widget=forms.Select(choices=PRIORITY_CHOICES))
     time_limit = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Time limit'}))
     room = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Room'}))
-    username = forms.ModelChoiceField(queryset = Student.objects.all())
+    #username = forms.ModelChoiceField(queryset = Student.objects.all())
 
 class HomeworkForm(forms.Form):
     name = forms.ModelChoiceField(queryset = Class.objects.all())

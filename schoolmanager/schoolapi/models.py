@@ -74,7 +74,7 @@ class Task(models.Model):
 class Exam(Task):
     time_limit = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
-    username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    #username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 
 class Homework(Task):
     no_questions = models.IntegerField(blank=True)

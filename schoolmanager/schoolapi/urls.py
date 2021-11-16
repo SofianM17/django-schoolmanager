@@ -12,7 +12,7 @@ router.register('exams', views.ExamView)
 router.register('homework', views.HomeworkView)
 router.register('assignment', views.AssignmentView)
 router.register('exam_prep', views.ExamPrepView)
-router.register('finance', views.FinanceView)
+router.register('finance', views.FinancePrepView)
 
 urlpatterns = [
     path('api/', include(router.urls), name='api'),
