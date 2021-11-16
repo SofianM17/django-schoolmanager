@@ -86,3 +86,60 @@ def updateClass(request, id):
         "section": form_fields['section'], "room": form_fields['room']})
             
     return render(request, 'schoolapi/updateClass.html', {'form': form})
+
+def addExam(request):
+    if request.method == 'POST':
+        form = ExamForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/exams/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = ExamForm()
+            
+    return render(request, 'schoolapi/addExam.html', {'form': form})
+
+def deleteExam(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/exam/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def addHomework(request):
+    if request.method == 'POST':
+        form = HomeworkForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/homework/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = HomeworkForm()
+            
+    return render(request, 'schoolapi/addExam.html', {'form': form})
+
+def deleteHomework(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/homework/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def addAssignment(request):
+    if request.method == 'POST':
+        form = AssignmentForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/assignment/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = AssignmentForm()
+            
+    return render(request, 'schoolapi/addHomework.html', {'form': form})
+
+def deleteAssignment(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
