@@ -86,3 +86,17 @@ def updateClass(request, id):
         "section": form_fields['section'], "room": form_fields['room']})
             
     return render(request, 'schoolapi/updateClass.html', {'form': form})
+
+# Exam CRUD
+def addExam(request):
+    if request.method == 'POST':
+        form = ExamForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/exam/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = ExamForm()
+            
+    return render(request, 'schoolapi/addExam.html', {'form': form})
