@@ -22,4 +22,8 @@ urlpatterns = [
     path('update-class/<id>', views.updateClass, name='update-class'),
 
     path('add-exam/', views.addExam),
+    
+    path('add-homework/', views.addHomework),
+
+    path('add-assignment/', views.addAssignment),
 ]
