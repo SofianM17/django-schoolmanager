@@ -57,7 +57,7 @@ class Event(models.Model):
     
 class Task(models.Model):
     name = models.CharField(max_length=50)
-    date = models.DateTimeField()
+    date = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, blank=True)
     PRIORITY_CHOICES = [
         ('High', 'High'),
@@ -72,7 +72,7 @@ class Task(models.Model):
         abstract=True
 
 class Exam(Task):
-    time_limit = models.IntegerField()
+    time_limit = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
     username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 

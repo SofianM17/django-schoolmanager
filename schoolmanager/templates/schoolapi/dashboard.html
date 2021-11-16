@@ -16,13 +16,15 @@
     <h1>
         Dashboard
     </h1>
-    <button type="button" onclick="window.location.href='/add-class'" class="btn btn-primary btn-lg border-0">
-        Add Class
-    </button>
+
+
     <div class="classes-container">
         <h2 class="border-bottom border-primary">
             Classes
         </h2>
+        <button type="button" onclick="window.location.href='/add-class'" class="btn btn-primary btn-lg border-0">
+            Add Class
+        </button>
         {% for class in classes %}
         <div class="classes-item border-bottom border-primary">
             <p>{{class.name}}
@@ -41,7 +43,29 @@
             </a>
         </div>
         {% endfor %}
-
-
+    </div>
+    <div class="exams-container">
+        <h2 class="border-bottom border-primary">
+            Exams
+        </h2>
+        <button type="button" onclick="window.location.href='/add-exam'" class="btn btn-primary btn-lg border-0">
+            Add Exam
+        </button>
+    </div>
+    <div class="homework-container">
+        <h2 class="border-bottom border-primary">
+            Homework
+        </h2>
+        <button type="button" onclick="window.location.href='/add-homework'" class="btn btn-primary btn-lg border-0">
+            Add Homework
+        </button>
+    </div>
+    <div class="assignment-container">
+        <h2 class="border-bottom border-primary">
+            Assignments
+        </h2>
+        <button type="button" onclick="window.location.href='/add-assignment'" class="btn btn-primary btn-lg border-0">
+            Add Assignment
+        </button>
     </div>
 </body>

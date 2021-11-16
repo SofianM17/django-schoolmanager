@@ -39,7 +39,7 @@ class HomeworkSerializer(serializers.ModelSerializer):
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment
-        fields = ('id', 'name', 'date', 'description', 'priority', 'group_members', 'module')
+        fields = ('id', 'name', 'date', 'description', 'priority', 'group_members', 'module', 'username')
 
 class ExamPrepSerializer(serializers.ModelSerializer):
     class Meta:
