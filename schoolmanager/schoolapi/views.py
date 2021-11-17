@@ -45,7 +45,7 @@ class ExamPrepView(viewsets.ModelViewSet):
     queryset = ExamPrep.objects.all()
     serializer_class = ExamPrepSerializer
 
-class FinancePrepView(viewsets.ModelViewSet):
+class FinanceView(viewsets.ModelViewSet):
     queryset = Finance.objects.all()
     serializer_class = FinanceSerializer
 
