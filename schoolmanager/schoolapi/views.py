@@ -63,8 +63,15 @@ def dashboard(request):
     response = requests.get('http://'+request.get_host()+'/api/assignment/')
     assignments = response.json()
 
+    response = requests.get('http://'+request.get_host()+'/api/clubs/')
+    clubs = response.json()
+
+    response = requests.get('http://'+request.get_host()+'/api/events/')
+    events = response.json()
+
     return render(request, "schoolapi/dashboard.html", {"classes" : classes, 
-    "exams" : exams, "homework" : homework, "assignments" : assignments})
+    "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
+    "events" : events})
 
 # Class CRUD
 def addClass(request):
@@ -98,6 +105,77 @@ def updateClass(request, id):
         form_fields = form_fields_req.json()
         form = ClassForm(initial={"name": form_fields['name'], "time": form_fields['time'],
         "section": form_fields['section'], "room": form_fields['room']})
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+# Club CRUD
+def addClub(request):
+    if request.method == 'POST':
+        form = ClubForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/clubs/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = ClubForm()
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+def deleteClub(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/clubs/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def updateClub(request, id):
+    if request.method == 'POST':
+        form = ClubForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.put('http://'+request.get_host()+'/api/clubs/'+id+'/', form)
+        return HttpResponseRedirect("/")
+    else:
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/clubs/'+id+'/')
+        form_fields = form_fields_req.json()
+        form = ClubForm(initial={"username": form_fields['username'], "name": form_fields['name'],
+        "meeting_time": form_fields['meeting_time']})
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+# Event CRUD
+def addEvent(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.post('http://'+request.get_host()+'/api/events/', form)
+        return HttpResponseRedirect("/")
+            
+    else:
+        form = EventForm()
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+def deleteEvent(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/events/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def updateEvent(request, id):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            requests.put('http://'+request.get_host()+'/api/events/'+id+'/', form)
+        return HttpResponseRedirect("/")
+    else:
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/events/'+id+'/')
+        form_fields = form_fields_req.json()
+        form = EventForm(initial={"name": form_fields['name'], "date": form_fields['date'],
+        "description": form_fields['description'], "host": form_fields['host'], "type": form_fields['type'],
+        "club": form_fields['club'], "username": form_fields['username']})
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 

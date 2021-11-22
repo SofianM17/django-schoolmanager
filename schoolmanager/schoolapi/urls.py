@@ -22,6 +22,14 @@ urlpatterns = [
     path('delete-class/<id>', views.deleteClass, name='delete-class'),
     path('update-class/<id>', views.updateClass, name='update-class'),
 
+    path('add-club/', views.addClub),
+    path('delete-club/<id>', views.deleteClub, name='delete-club'),
+    path('update-club/<id>', views.updateClub, name='update-club'),
+
+    path('add-event/', views.addEvent),
+    path('delete-event/<id>', views.deleteEvent, name='delete-event'),
+    path('update-event/<id>', views.updateEvent, name='update-event'),
+
     path('add-exam/', views.addExam),
     path('delete-exam/<id>', views.deleteExam, name='delete-exam'),
     path('update-exam/<id>', views.updateExam, name='update-exam'),

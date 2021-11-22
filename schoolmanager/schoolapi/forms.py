@@ -7,6 +7,20 @@ class ClassForm(forms.Form):
     section = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Section'}))
     room = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Room'}), required=False)
 
+class ClubForm(forms.Form):
+    username = forms.ModelChoiceField(queryset = Student.objects.all())
+    name = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+    meeting_time = forms.CharField( widget=forms.TextInput(attrs={'placeholder': 'Meeting Time'}))
+
+class EventForm(forms.Form):
+    name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+    date = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Date'}))
+    description = forms.CharField(max_length = 1000, widget=forms.TextInput(attrs={'placeholder': 'Description'}), required=False)
+    host = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Host'}), required=False)
+    type = forms.CharField( label='Event Type', widget=forms.Select(choices=TYPE_CHOICES))
+    club = forms.ModelChoiceField(queryset = Club.objects.all())
+    username = forms.ModelChoiceField(queryset = Student.objects.all())
+
 class ExamForm(forms.Form):
     username = forms.ModelChoiceField(queryset = Student.objects.all())
     name = forms.ModelChoiceField(queryset = Class.objects.all())

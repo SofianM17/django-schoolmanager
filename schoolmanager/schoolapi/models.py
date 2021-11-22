@@ -2,6 +2,16 @@ from django.db import models
 from django.db.models.fields import CharField
 
 # Create your models here.
+TYPE_CHOICES = [
+    ('Network', 'Networking'),
+    ('InfoSess', 'Information Session'),
+    ('Speaker', 'Career Fair'),
+    ('Party', 'Party'),
+    ('Workshop', 'Workshop'),
+    ('Sports', 'Sports'),
+    ('Conference', 'Conference'),
+    ('Other', 'Other'),
+] 
 
 class User (models.Model):
     username = models.CharField(max_length=50)
@@ -31,26 +41,17 @@ class Class(models.Model):
 class Club(models.Model):
     username = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    meeting_time = models.DateTimeField(blank=True)
+    meeting_time = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return '%s' % (self.name)
-    
+
+   
 class Event(models.Model):
     name = models.CharField(max_length=50)
-    date = models.DateTimeField()
+    date = models.CharField(max_length=50)
     description = models.CharField(max_length = 1000, blank=True)
     host = models.CharField(max_length=50, blank=True)
-    TYPE_CHOICES = [
-        ('Network', 'Networking'),
-        ('InfoSess', 'Information Session'),
-        ('Speaker', 'Career Fair'),
-        ('Party', 'Party'),
-        ('Workshop', 'Workshop'),
-        ('Sports', 'Sports'),
-        ('Conference', 'Conference'),
-        ('Other', 'Other'),
-    ]
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     username = models.ForeignKey(Student, on_delete=models.CASCADE)
