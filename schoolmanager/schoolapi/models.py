@@ -70,6 +70,10 @@ class Task(models.Model):
     class Meta:
         abstract=True
 
+    @property
+    def name_name(self):
+        return self.name.name
+
 class Exam(Task):
     time_limit = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
