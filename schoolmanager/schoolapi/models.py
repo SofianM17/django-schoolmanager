@@ -55,18 +55,17 @@ class Event(models.Model):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     username = models.ForeignKey(Student, on_delete=models.CASCADE)
     
+PRIORITY_CHOICES = [
+    ('High', 'High'),
+    ('Medium', 'Medium'),
+    ('Low', 'Low')
+]
 class Task(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.ForeignKey(Class, on_delete=models.CASCADE)
     date = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, blank=True)
-    PRIORITY_CHOICES = [
-        ('High', 'High'),
-        ('Medium', 'Medium'),
-        ('Low', 'Low')
-    ]
     priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES)
     username = models.ForeignKey(Student, on_delete=models.CASCADE)
-    name = models.ForeignKey(Class, on_delete=models.CASCADE)
 
     class Meta:
         abstract=True
@@ -74,7 +73,7 @@ class Task(models.Model):
 class Exam(Task):
     time_limit = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
-    #username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    #username = models.ForeignKey(Student, on_delete=models.CASCADE)
 
 class Homework(Task):
     no_questions = models.IntegerField(blank=True)

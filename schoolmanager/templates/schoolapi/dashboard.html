@@ -51,6 +51,28 @@
         <button type="button" onclick="window.location.href='/add-exam'" class="btn btn-primary btn-lg border-0">
             Add Exam
         </button>
+        {% for exam in exams %}
+        <div class="exams-item border-bottom border-primary">
+            <p>{{exam.name}}
+                <br>
+                Date: {{exam.date}}
+                <br>
+                Description: {{exam.description}}
+                <br>
+                Priority: {{exam.priority}}
+                <br>
+                Time Limit: {{exam.time_limit}}
+                <br>
+                Room: {{exam.room}}
+            </p>
+            <!-- <a href="{% url 'update-class' exam.id%}" class=" border-0 btn btn-success">
+                Update Class
+            </a>
+            <a href="{% url 'delete-class' exam.id%}" class="border-0 btn btn-danger">
+                Delete Class
+            </a> -->
+        </div>
+        {% endfor %}
     </div>
     <div class="homework-container" style = "float: left; margin: 10px">
         <h2 class="border-bottom border-primary">

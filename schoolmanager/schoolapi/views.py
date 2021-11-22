@@ -54,7 +54,10 @@ def dashboard(request):
     response = requests.get('http://'+request.get_host()+'/api/class/')
     classes = response.json()
 
-    return render(request, "schoolapi/dashboard.html", {"classes" : classes})
+    response = requests.get('http://'+request.get_host()+'/api/exams/')
+    exams = response.json()
+
+    return render(request, "schoolapi/dashboard.html", {"classes" : classes, "exams" : exams})
 
 # Class CRUD
 def addClass(request):
