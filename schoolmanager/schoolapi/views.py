@@ -54,7 +54,7 @@ def dashboard(request):
     response = requests.get('http://'+request.get_host()+'/api/class/')
     classes = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/exams/')
+    response = requests.get('http://'+request.get_host()+'/api/exam/')
     exams = response.json()
 
     response = requests.get('http://'+request.get_host()+'/api/homework/')
@@ -105,6 +105,7 @@ def updateClass(request, id):
 def addExam(request):
     if request.method == 'POST':
         form = ExamForm(request.POST)
+        print("fuck")
         if form.is_valid():
             form = form.cleaned_data
             requests.post('http://'+request.get_host()+'/api/exam/', form)
@@ -117,7 +118,7 @@ def addExam(request):
 
 def deleteExam(request, id):
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/exams/'+id+'/')
+        requests.delete('http://'+request.get_host()+'/api/exam/'+id+'/')
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
@@ -129,7 +130,7 @@ def updateExam(request, id):
             requests.put('http://'+request.get_host()+'/api/exam/'+id+'/', form)
         return HttpResponseRedirect("/")
     else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/class/'+id+'/')
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/exam/'+id+'/')
         form_fields = form_fields_req.json()
         form = ExamForm(initial={})
             
@@ -163,7 +164,7 @@ def updateHomework(request, id):
             requests.put('http://'+request.get_host()+'/api/homework/'+id+'/', form)
         return HttpResponseRedirect("/")
     else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/class/'+id+'/')
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/homework/'+id+'/')
         form_fields = form_fields_req.json()
         form = HomeworkForm(initial={})
             
@@ -197,7 +198,7 @@ def updateAssignment(request, id):
             requests.put('http://'+request.get_host()+'/api/assignment/'+id+'/', form)
         return HttpResponseRedirect("/")
     else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/class/'+id+'/')
+        form_fields_req = requests.get('http://'+request.get_host()+'/api/assignment/'+id+'/')
         form_fields = form_fields_req.json()
         form = AssignmentForm(initial={})
             
