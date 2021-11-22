@@ -70,7 +70,6 @@ class Task(models.Model):
     class Meta:
         abstract=True
 
-    @property
     def name_name(self):
         return self.name.name
 

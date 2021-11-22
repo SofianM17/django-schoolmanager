@@ -114,6 +114,12 @@ def addExam(request):
             
     return render(request, 'schoolapi/addExam.html', {'form': form})
 
+def deleteExam(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/exams/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
  # Homework CRUD
 def addHomework(request):
     if request.method == 'POST':
@@ -128,6 +134,12 @@ def addHomework(request):
             
     return render(request, 'schoolapi/addHomework.html', {'form': form})
 
+def deleteHomework(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/homework/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
 # Assignment CRUD
 def addAssignment(request):
     if request.method == 'POST':
@@ -141,3 +153,9 @@ def addAssignment(request):
         form = AssignmentForm()
             
     return render(request, 'schoolapi/addAssignment.html', {'form': form})
+
+def deleteAssignment(request, id):
+    if request.method == 'POST':
+        requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})

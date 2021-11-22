@@ -23,8 +23,11 @@ urlpatterns = [
     path('update-class/<id>', views.updateClass, name='update-class'),
 
     path('add-exam/', views.addExam),
+    path('delete-exam/<id>', views.deleteExam, name='delete-exam'),
     
     path('add-homework/', views.addHomework),
+    path('delete-homework/<id>', views.deleteHomework, name='delete-homework'),
 
     path('add-assignment/', views.addAssignment),
+    path('delete-assignment/<id>', views.deleteAssignment, name='delete-assignment'),
 ]

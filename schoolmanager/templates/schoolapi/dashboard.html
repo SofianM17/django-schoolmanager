@@ -23,7 +23,7 @@
             Classes
         </h2>
         <button type="button" onclick="window.location.href='/add-class'" class="btn btn-primary btn-lg border-0">
-            Add Class
+            Add
         </button>
         {% for class in classes %}
         <div class="classes-item border-bottom border-primary">
@@ -36,10 +36,10 @@
                 Room: {{class.room}}
             </p>
             <a href="{% url 'update-class' class.id%}" class=" border-0 btn btn-success">
-                Update Class
+                Update
             </a>
             <a href="{% url 'delete-class' class.id%}" class="border-0 btn btn-danger">
-                Delete Class
+                Delete
             </a>
         </div>
         {% endfor %}
@@ -49,7 +49,7 @@
             Exams
         </h2>
         <button type="button" onclick="window.location.href='/add-exam'" class="btn btn-primary btn-lg border-0">
-            Add Exam
+            Add
         </button>
         {% for exam in exams %}
         <div class="exams-item border-bottom border-primary">
@@ -68,9 +68,10 @@
             <!-- <a href="{% url 'update-class' exam.id%}" class=" border-0 btn btn-success">
                 Update Class
             </a>
-            <a href="{% url 'delete-class' exam.id%}" class="border-0 btn btn-danger">
-                Delete Class
-            </a> -->
+              -->
+            <a href="{% url 'delete-exam' exam.id%}" class="border-0 btn btn-danger">
+                Delete
+            </a>
         </div>
         {% endfor %}
     </div>
@@ -79,7 +80,7 @@
             Homework
         </h2>
         <button type="button" onclick="window.location.href='/add-homework'" class="btn btn-primary btn-lg border-0">
-            Add Homework
+            Add
         </button>
         {% for hw in homework %}
         <div class="exams-item border-bottom border-primary">
@@ -96,9 +97,10 @@
             <!-- <a href="{% url 'update-class' hw.id%}" class=" border-0 btn btn-success">
                 Update Class
             </a>
-            <a href="{% url 'delete-class' hw.id%}" class="border-0 btn btn-danger">
-                Delete Class
-            </a> -->
+            -->
+            <a href="{% url 'delete-homework' hw.id%}" class="border-0 btn btn-danger">
+                Delete
+            </a>
         </div>
         {% endfor %}
     </div>
@@ -107,7 +109,7 @@
             Assignments
         </h2>
         <button type="button" onclick="window.location.href='/add-assignment'" class="btn btn-primary btn-lg border-0">
-            Add Assignment
+            Add
         </button>
         {% for assignment in assignments %}
         <div class="exams-item border-bottom border-primary">
@@ -126,9 +128,10 @@
             <!-- <a href="{% url 'update-class' assignment.id%}" class=" border-0 btn btn-success">
                 Update Class
             </a>
-            <a href="{% url 'delete-class' assignment.id%}" class="border-0 btn btn-danger">
-                Delete Class
-            </a> -->
+             -->
+            <a href="{% url 'delete-assignment' assignment.id%}" class="border-0 btn btn-danger">
+                Delete
+            </a>
         </div>
         {% endfor %}
     </div>
