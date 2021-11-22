@@ -24,10 +24,13 @@ urlpatterns = [
 
     path('add-exam/', views.addExam),
     path('delete-exam/<id>', views.deleteExam, name='delete-exam'),
+    path('update-exam/<id>', views.updateExam, name='update-exam'),
     
     path('add-homework/', views.addHomework),
     path('delete-homework/<id>', views.deleteHomework, name='delete-homework'),
+    path('update-homework/<id>', views.updateHomework, name='update-homework'),
 
     path('add-assignment/', views.addAssignment),
     path('delete-assignment/<id>', views.deleteAssignment, name='delete-assignment'),
+    path('update-assignment/<id>', views.updateAssignment, name='update-assignment'),
 ]

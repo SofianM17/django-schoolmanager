@@ -65,10 +65,9 @@
                 <br>
                 Room: {{exam.room}}
             </p>
-            <!-- <a href="{% url 'update-class' exam.id%}" class=" border-0 btn btn-success">
-                Update Class
+            <a href="{% url 'update-exam' exam.id%}" class=" border-0 btn btn-success">
+                Update
             </a>
-              -->
             <a href="{% url 'delete-exam' exam.id%}" class="border-0 btn btn-danger">
                 Delete
             </a>
@@ -94,10 +93,9 @@
                 <br>
                 No Questions: {{hw.no_questions}}
             </p>
-            <!-- <a href="{% url 'update-class' hw.id%}" class=" border-0 btn btn-success">
-                Update Class
+            <a href="{% url 'update-homework' hw.id%}" class=" border-0 btn btn-success">
+                Update
             </a>
-            -->
             <a href="{% url 'delete-homework' hw.id%}" class="border-0 btn btn-danger">
                 Delete
             </a>
@@ -125,10 +123,9 @@
                 <br>
                 Module: {{assignment.module}}
             </p>
-            <!-- <a href="{% url 'update-class' assignment.id%}" class=" border-0 btn btn-success">
-                Update Class
+            <a href="{% url 'update-assignment' assignment.id%}" class=" border-0 btn btn-success">
+                Update
             </a>
-             -->
             <a href="{% url 'delete-assignment' assignment.id%}" class="border-0 btn btn-danger">
                 Delete
             </a>
