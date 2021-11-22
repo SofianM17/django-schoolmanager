@@ -105,7 +105,6 @@ def updateClass(request, id):
 def addExam(request):
     if request.method == 'POST':
         form = ExamForm(request.POST)
-        print("fuck")
         if form.is_valid():
             form = form.cleaned_data
             requests.post('http://'+request.get_host()+'/api/exam/', form)
@@ -132,7 +131,10 @@ def updateExam(request, id):
     else:
         form_fields_req = requests.get('http://'+request.get_host()+'/api/exam/'+id+'/')
         form_fields = form_fields_req.json()
-        form = ExamForm(initial={})
+        form = ExamForm(initial={"username": form_fields['username'], "name": form_fields['name'],
+        "date": form_fields['date'], "description": form_fields['description'],
+        "priority": form_fields['priority'], "time_limit": form_fields['time_limit'],
+        "room": form_fields['room']})
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
@@ -166,7 +168,9 @@ def updateHomework(request, id):
     else:
         form_fields_req = requests.get('http://'+request.get_host()+'/api/homework/'+id+'/')
         form_fields = form_fields_req.json()
-        form = HomeworkForm(initial={})
+        form = HomeworkForm(initial={"username": form_fields['username'], "name": form_fields['name'],
+        "date": form_fields['date'], "description": form_fields['description'],
+        "priority": form_fields['priority'], "no_questions": form_fields['no_questions']})
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
@@ -200,6 +204,9 @@ def updateAssignment(request, id):
     else:
         form_fields_req = requests.get('http://'+request.get_host()+'/api/assignment/'+id+'/')
         form_fields = form_fields_req.json()
-        form = AssignmentForm(initial={})
+        form = AssignmentForm(initial={"username": form_fields['username'], "name": form_fields['name'],
+        "date": form_fields['date'], "description": form_fields['description'],
+        "priority": form_fields['priority'], "group_members": form_fields['group_members'],
+        "module": form_fields['module']})
             
     return render(request, 'schoolapi/forms.html', {'form': form})
