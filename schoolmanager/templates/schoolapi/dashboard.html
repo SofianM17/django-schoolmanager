@@ -81,6 +81,26 @@
         <button type="button" onclick="window.location.href='/add-homework'" class="btn btn-primary btn-lg border-0">
             Add Homework
         </button>
+        {% for hw in homework %}
+        <div class="exams-item border-bottom border-primary">
+            <p>{{hw.name}}
+                <br>
+                Date: {{hw.date}}
+                <br>
+                Description: {{hw.description}}
+                <br>
+                Priority: {{hw.priority}}
+                <br>
+                No Questions: {{hw.no_questions}}
+            </p>
+            <!-- <a href="{% url 'update-class' hw.id%}" class=" border-0 btn btn-success">
+                Update Class
+            </a>
+            <a href="{% url 'delete-class' hw.id%}" class="border-0 btn btn-danger">
+                Delete Class
+            </a> -->
+        </div>
+        {% endfor %}
     </div>
     <div class="assignment-container" style = "float: left; margin: 10px">
         <h2 class="border-bottom border-primary">
@@ -89,5 +109,27 @@
         <button type="button" onclick="window.location.href='/add-assignment'" class="btn btn-primary btn-lg border-0">
             Add Assignment
         </button>
+        {% for assignment in assignments %}
+        <div class="exams-item border-bottom border-primary">
+            <p>{{assignment.name}}
+                <br>
+                Date: {{assignment.date}}
+                <br>
+                Description: {{assignment.description}}
+                <br>
+                Priority: {{assignment.priority}}
+                <br>
+                Group Members: {{assignment.group_members}}
+                <br>
+                Module: {{assignment.module}}
+            </p>
+            <!-- <a href="{% url 'update-class' assignment.id%}" class=" border-0 btn btn-success">
+                Update Class
+            </a>
+            <a href="{% url 'delete-class' assignment.id%}" class="border-0 btn btn-danger">
+                Delete Class
+            </a> -->
+        </div>
+        {% endfor %}
     </div>
 </body>

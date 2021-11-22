@@ -61,11 +61,11 @@ PRIORITY_CHOICES = [
     ('Low', 'Low')
 ]
 class Task(models.Model):
+    username = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.ForeignKey(Class, on_delete=models.CASCADE)
     date = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, blank=True)
     priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES)
-    username = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     class Meta:
         abstract=True
@@ -77,7 +77,6 @@ class Exam(Task):
 
 class Homework(Task):
     no_questions = models.IntegerField(blank=True)
-    username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s' % (self.name)
@@ -85,7 +84,6 @@ class Homework(Task):
 class Assignment(Task):
     group_members = models.CharField(max_length = 1000, blank = True)
     module = models.CharField(max_length = 50, blank = True)
-    username = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 
 class ExamPrep(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)

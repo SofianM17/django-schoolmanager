@@ -17,18 +17,18 @@ class ExamForm(forms.Form):
     room = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Room'}))
 
 class HomeworkForm(forms.Form):
+    username = forms.ModelChoiceField(queryset = Student.objects.all())
     name = forms.ModelChoiceField(queryset = Class.objects.all())
     date = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Date'}))
     description = forms.CharField( max_length=1000, widget=forms.TextInput(attrs={'placeholder': 'Description'}))
     priority = forms.CharField( label='Priority', widget=forms.Select(choices=PRIORITY_CHOICES))
     no_questions = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': '#'}))
-    username = forms.ModelChoiceField(queryset = Student.objects.all())
 
 class AssignmentForm(forms.Form):
+    username = forms.ModelChoiceField(queryset = Student.objects.all())
     name = forms.ModelChoiceField(queryset = Class.objects.all())
     date = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Date'}))
     description = forms.CharField( max_length=1000, widget=forms.TextInput(attrs={'placeholder': 'Description'}))
     priority = forms.CharField( label='Priority', widget=forms.Select(choices=PRIORITY_CHOICES))
     group_members = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Group members'}))
     module = forms.CharField( max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Module'}))
-    username = forms.ModelChoiceField(queryset = Student.objects.all())
