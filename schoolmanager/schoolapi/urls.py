@@ -43,10 +43,10 @@ urlpatterns = [
     path('update-assignment/<id>', views.updateAssignment, name='update-assignment'),
 
     path('add-examprep/', views.addExamPrep),
-    path('delete-examprep/<id>', views.deleteExamPrep, name='delete-examPrep'),
-    path('update-examprep/<id>', views.updateExamPrep, name='update-examPrep'),
+    path('delete-examprep/<id>', views.deleteExamPrep, name='delete-examprep'),
+    path('update-examprep/<id>', views.updateExamPrep, name='update-examprep'),
 
     path('add-finance/', views.addFinance),
-    path('delete-finance/<id>', views.deleteFinance, name='delete-Finance'),
-    path('update-finance/<id>', views.updateFinance, name='update-Finance'),
+    path('delete-finance/<id>', views.deleteFinance, name='delete-finance'),
+    path('update-finance/<id>', views.updateFinance, name='update-finance'),
 ]

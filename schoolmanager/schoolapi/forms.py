@@ -24,21 +24,21 @@ class ExamForm(ModelForm):
         fields = '__all__'
 
 class HomeworkForm(ModelForm):
-        class Meta:
-            model = Homework
-            fields = '__all__'
+    class Meta:
+        model = Homework
+        fields = '__all__'
 
 class AssignmentForm(ModelForm):
-        class Meta:
-            model = Assignment
-            fields = '__all__'
+    class Meta:
+        model = Assignment
+        fields = '__all__'
 
 class ExamPrepForm(ModelForm):
-        class Meta:
-            model = ExamPrep
-            fields = '__all__'
+    class Meta:
+        model = ExamPrep
+        fields = '__all__'
 
 class FinanceForm(ModelForm):
-        class Meta:
-            model = Finance
-            fields = '__all__'
+    class Meta:
+        model = Finance
+        fields = '__all__'

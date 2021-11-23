@@ -168,7 +168,7 @@
             Add
         </button>
         {% for event in events %}
-        <div class="clubs-item border-bottom border-primary">
+        <div class="events-item border-bottom border-primary">
             <p>
                 {{event.name}}
                 <br>
@@ -180,6 +180,7 @@
                 <br>
                 Type: {{event.type}}
                 <br>
+                Club: {{event.club_name}}
             </p>
             <a href="{% url 'update-event' event.id%}" class=" border-0 btn btn-success">
                 Update
@@ -199,7 +200,18 @@
             Add
         </button>
         {% for f in finance %}
-        <div class="clubs-item border-bottom border-primary">
+        <div class="finance-item border-bottom border-primary">
+            <p>
+                Initial Budget: {{f.initialBudget}}
+                <br>
+                Income: {{f.income}}
+                <br>
+                Tuition: {{f.tuition}}
+                <br>
+                Equipment: {{f.equipment}}
+                <br>
+                Books: {{f.books}}
+            </p>
             <a href="{% url 'update-finance' f.id%}" class=" border-0 btn btn-success">
                 Update
             </a>
@@ -217,8 +229,13 @@
         <button type="button" onclick="window.location.href='/add-examprep'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for ep in examPrep %}
-        <div class="clubs-item border-bottom border-primary">
+        {% for ep in exam_prep %}
+        <div class="examPrep-item border-bottom border-primary">
+            <p>
+                Exam: {{ep.exam}}
+                <br>
+                Prep Type: {{ep.prep_type}}
+            </p>
             <a href="{% url 'update-examprep' ep.id%}" class=" border-0 btn btn-success">
                 Update
             </a>

@@ -24,12 +24,12 @@ class ClubSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date', 'description', 'host', 'type', 'club')
+        fields = ('id', 'name', 'date', 'description', 'host', 'type', 'club', 'club_name')
 
 class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
-        fields = ('id', 'name', 'date', 'description', 'priority', 'time_limit', 'room')
+        fields = ('id', 'name', 'name_name', 'date', 'description', 'priority', 'time_limit', 'room')
 
 class HomeworkSerializer(serializers.ModelSerializer):
     class Meta:

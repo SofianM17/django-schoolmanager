@@ -53,6 +53,9 @@ class Event(models.Model):
     host = models.CharField(max_length=50, blank=True)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
+
+    def club_name(self):
+        return self.club.name
     
 PRIORITY_CHOICES = [
     ('High', 'High'),
@@ -101,6 +104,7 @@ class Finance(models.Model):
     initialBudget = models.FloatField()
     income = models.FloatField()
     tuition = models.FloatField()
-    equipment = models.CharField(max_length = 1000, blank = True)
-    books = models.CharField(max_length = 1000, blank = True)
+    equipment = models.FloatField()
+    books = models.FloatField()
+
     #student = models.OneToOneField(Student, on_delete=models.CASCADE)
