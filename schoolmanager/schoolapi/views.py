@@ -101,7 +101,7 @@ def deleteClass(request, id):
 
 def updateClass(request, id):
     class_data = Class.objects.get(id=id)
-    #orm=ClassForm(instance=class_data)
+    form = ClassForm(instance=class_data)
     if request.method == 'POST':
         form = ClassForm(request.POST, instance=class_data)
         if form.is_valid():
@@ -132,6 +132,7 @@ def deleteClub(request, id):
 
 def updateClub(request, id):
     club_data = Club.objects.all(id=id)
+    form = ClubForm(instance=club_data)
     if request.method == 'POST':
         form = ClubForm(request.POST, instance=club_data)
         if form.is_valid():
@@ -162,7 +163,7 @@ def deleteEvent(request, id):
 
 def updateEvent(request, id):
     event_data = Event.objects.all(id=id)
-
+    form = EventForm(instance=event_data)
     if request.method == 'POST':
         form = EventForm(request.POST, instance = event_data)
         if form.is_valid():
@@ -193,6 +194,7 @@ def deleteExam(request, id):
 
 def updateExam(request, id):
     exam_data = Exam.objects.get(id=id)
+    form = ExamForm(instance=exam_data)
     if request.method == 'POST':
         form = ExamForm(request.POST, instance=exam_data)
         if form.is_valid():
@@ -223,6 +225,7 @@ def deleteHomework(request, id):
 
 def updateHomework(request, id):
     homework_data = Homework.objects.all(id=id)
+    form = HomeworkForm(instance=homework_data)
     if request.method == 'POST':
         form = HomeworkForm(request.POST, instance=homework_data)
         if form.is_valid():
@@ -256,6 +259,7 @@ def deleteAssignment(request, id):
 
 def updateAssignment(request, id):
     assignment_data = Assignment.objects.all()
+    form = AssignmentForm(instance=assignment_data)
     if request.method == 'POST':
         form = AssignmentForm(request.POST, instance=assignment_data)
         if form.is_valid():
@@ -295,6 +299,7 @@ def deleteExamPrep(request, id):
 
 def updateExamPrep(request, id):
     examPrep_data = Homework.objects.all(id=id)
+    form = ExamPrepForm(instance=examPrep_data)
     if request.method == 'POST':
         form = HomeworkForm(request.POST, instance=examPrep_data)
         if form.is_valid():
@@ -325,6 +330,7 @@ def deleteFinance(request, id):
 
 def updateFinance(request, id):
     finance_data = Finance.objects.all(id=id)
+    form = FinanceForm(instance=finance_data)
     if request.method == 'POST':
         form = FinanceForm(request.POST, instance=finance_data)
         if form.is_valid():
