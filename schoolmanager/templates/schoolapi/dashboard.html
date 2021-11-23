@@ -190,4 +190,42 @@
         </div>
         {% endfor %}
     </div>
+
+    <div class="finance-container" style="float: left; margin: 10px">
+        <h2 class="border-bottom border-primary">
+            Finance
+        </h2>
+        <button type="button" onclick="window.location.href='/add-finance'" class="btn btn-primary btn-lg border-0">
+            Add
+        </button>
+        {% for f in finance %}
+        <div class="clubs-item border-bottom border-primary">
+            <a href="{% url 'update-finance' f.id%}" class=" border-0 btn btn-success">
+                Update
+            </a>
+            <a href="{% url 'delete-finance' f.id%}" class="border-0 btn btn-danger">
+                Delete
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="examPrep-container" style="float: left; margin: 10px">
+        <h2 class="border-bottom border-primary">
+            Exam Prep
+        </h2>
+        <button type="button" onclick="window.location.href='/add-examprep'" class="btn btn-primary btn-lg border-0">
+            Add
+        </button>
+        {% for ep in examPrep %}
+        <div class="clubs-item border-bottom border-primary">
+            <a href="{% url 'update-examprep' ep.id%}" class=" border-0 btn btn-success">
+                Update
+            </a>
+            <a href="{% url 'delete-examprep' ep.id%}" class="border-0 btn btn-danger">
+                Delete
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </body>

@@ -41,4 +41,12 @@ urlpatterns = [
     path('add-assignment/', views.addAssignment),
     path('delete-assignment/<id>', views.deleteAssignment, name='delete-assignment'),
     path('update-assignment/<id>', views.updateAssignment, name='update-assignment'),
+
+    path('add-examprep/', views.addExamPrep),
+    path('delete-examprep/<id>', views.deleteExamPrep, name='delete-examPrep'),
+    path('update-examprep/<id>', views.updateExamPrep, name='update-examPrep'),
+
+    path('add-finance/', views.addFinance),
+    path('delete-finance/<id>', views.deleteFinance, name='delete-Finance'),
+    path('update-finance/<id>', views.updateFinance, name='update-Finance'),
 ]

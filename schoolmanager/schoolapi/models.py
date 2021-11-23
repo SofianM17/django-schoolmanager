@@ -39,7 +39,6 @@ class Class(models.Model):
         return '%s' % (self.name)
 
 class Club(models.Model):
-    username = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     meeting_time = models.CharField(max_length=50, blank=True)
 
@@ -54,7 +53,6 @@ class Event(models.Model):
     host = models.CharField(max_length=50, blank=True)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    username = models.ForeignKey(Student, on_delete=models.CASCADE)
     
 PRIORITY_CHOICES = [
     ('High', 'High'),
@@ -62,7 +60,6 @@ PRIORITY_CHOICES = [
     ('Low', 'Low')
 ]
 class Task(models.Model):
-    username = models.ForeignKey(Student, on_delete=models.CASCADE)
     name = models.ForeignKey(Class, on_delete=models.CASCADE)
     date = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, blank=True)
@@ -77,6 +74,9 @@ class Task(models.Model):
 class Exam(Task):
     time_limit = models.CharField(max_length=50)
     room = models.CharField(max_length=50)
+
+    def __str__(self):
+        return '%s' % (self.name)
 
 class Homework(Task):
     no_questions = models.IntegerField(blank=True)
@@ -103,4 +103,4 @@ class Finance(models.Model):
     tuition = models.FloatField()
     equipment = models.CharField(max_length = 1000, blank = True)
     books = models.CharField(max_length = 1000, blank = True)
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    #student = models.OneToOneField(Student, on_delete=models.CASCADE)

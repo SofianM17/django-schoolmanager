@@ -69,18 +69,23 @@ def dashboard(request):
     response = requests.get('http://'+request.get_host()+'/api/events/')
     events = response.json()
 
+    response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
+    exam_prep = response.json()
+
+    response = requests.get('http://'+request.get_host()+'/api/finance/')
+    finance = response.json()
+
     return render(request, "schoolapi/dashboard.html", {"classes" : classes, 
     "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
-    "events" : events})
+    "events" : events, "exam_prep" : exam_prep, "finance" : finance})
 
-# Class CRUD
+##### Class CRUD #####
 def addClass(request):
     if request.method == 'POST':
         form = ClassForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/class/', form)
-        return HttpResponseRedirect("/")
+            form.save()
+            return HttpResponseRedirect("/")
             
     else:
         form = ClassForm()
@@ -88,34 +93,30 @@ def addClass(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteClass(request, id):
+    class_data = Class.objects.all(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/class/'+id+'/')
+        class_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateClass(request, id):
+    class_data = Class.objects.get(id=id)
+    #orm=ClassForm(instance=class_data)
     if request.method == 'POST':
-        form = ClassForm(request.POST)
+        form = ClassForm(request.POST, instance=class_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/class/'+id+'/', form)
+            form.save()
         return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/class/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = ClassForm(initial={"name": form_fields['name'], "time": form_fields['time'],
-        "section": form_fields['section'], "room": form_fields['room']})
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
-# Club CRUD
+##### Club CRUD #####
 def addClub(request):
     if request.method == 'POST':
         form = ClubForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/clubs/', form)
-        return HttpResponseRedirect("/")
+            form.save()
+            return HttpResponseRedirect("/")
             
     else:
         form = ClubForm()
@@ -123,34 +124,29 @@ def addClub(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteClub(request, id):
+    club_data = Club.objects.all(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/clubs/'+id+'/')
+        club_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateClub(request, id):
+    club_data = Club.objects.all(id=id)
     if request.method == 'POST':
-        form = ClubForm(request.POST)
+        form = ClubForm(request.POST, instance=club_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/clubs/'+id+'/', form)
-        return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/clubs/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = ClubForm(initial={"username": form_fields['username'], "name": form_fields['name'],
-        "meeting_time": form_fields['meeting_time']})
+            form.save()
+            return HttpResponseRedirect("/")
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
-# Event CRUD
+##### Event CRUD #####
 def addEvent(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/events/', form)
-        return HttpResponseRedirect("/")
+            form.save()
+            return HttpResponseRedirect("/")
             
     else:
         form = EventForm()
@@ -158,35 +154,30 @@ def addEvent(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteEvent(request, id):
+    event_data = Event.objects.all(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/events/'+id+'/')
+        event_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateEvent(request, id):
+    event_data = Event.objects.all(id=id)
+
     if request.method == 'POST':
-        form = EventForm(request.POST)
+        form = EventForm(request.POST, instance = event_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/events/'+id+'/', form)
-        return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/events/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = EventForm(initial={"name": form_fields['name'], "date": form_fields['date'],
-        "description": form_fields['description'], "host": form_fields['host'], "type": form_fields['type'],
-        "club": form_fields['club'], "username": form_fields['username']})
+            form.save()
+            return HttpResponseRedirect("/")
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
-# Exam CRUD
+##### Exam CRUD #####
 def addExam(request):
     if request.method == 'POST':
         form = ExamForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/exam/', form)
-        return HttpResponseRedirect("/")
+            form.save()
+            return HttpResponseRedirect("/")
             
     else:
         form = ExamForm()
@@ -194,36 +185,29 @@ def addExam(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteExam(request, id):
+    exam_data = Exam.objects.get(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/exam/'+id+'/')
+        exam_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateExam(request, id):
+    exam_data = Exam.objects.get(id=id)
     if request.method == 'POST':
-        form = ExamForm(request.POST)
+        form = ExamForm(request.POST, instance=exam_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/exam/'+id+'/', form)
-        return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/exam/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = ExamForm(initial={"username": form_fields['username'], "name": form_fields['name'],
-        "date": form_fields['date'], "description": form_fields['description'],
-        "priority": form_fields['priority'], "time_limit": form_fields['time_limit'],
-        "room": form_fields['room']})
+            form.save()
+            return HttpResponseRedirect("/")
             
     return render(request, 'schoolapi/forms.html', {'form': form})
 
- # Homework CRUD
+ ##### Homework CRUD #####
 def addHomework(request):
     if request.method == 'POST':
         form = HomeworkForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/homework/', form)
-        return HttpResponseRedirect("/")
+            form.save()
+            return HttpResponseRedirect("/")
             
     else:
         form = HomeworkForm()
@@ -231,34 +215,30 @@ def addHomework(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteHomework(request, id):
+    homework_data = Homework.objects.all(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/homework/'+id+'/')
+        homework_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateHomework(request, id):
+    homework_data = Homework.objects.all(id=id)
     if request.method == 'POST':
-        form = HomeworkForm(request.POST)
+        form = HomeworkForm(request.POST, instance=homework_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/homework/'+id+'/', form)
-        return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/homework/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = HomeworkForm(initial={"username": form_fields['username'], "name": form_fields['name'],
-        "date": form_fields['date'], "description": form_fields['description'],
-        "priority": form_fields['priority'], "no_questions": form_fields['no_questions']})
-            
+            form.save()
+            return HttpResponseRedirect("/")
+
     return render(request, 'schoolapi/forms.html', {'form': form})
 
-# Assignment CRUD
+##### Assignment CRUD #####
 def addAssignment(request):
     if request.method == 'POST':
         form = AssignmentForm(request.POST)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.post('http://'+request.get_host()+'/api/assignment/', form)
+            form.save()
+            #form = form.cleaned_data
+            #requests.post('http://'+request.get_host()+'/api/assignment/', form)
         return HttpResponseRedirect("/")
             
     else:
@@ -267,24 +247,88 @@ def addAssignment(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteAssignment(request, id):
+    assignment_data = Assignment.objects.all(id=id)
     if request.method == 'POST':
-        requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
-        return HttpResponseRedirect("/")
+        assignment_data.delete()
+        #requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
+        #return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateAssignment(request, id):
+    assignment_data = Assignment.objects.all()
     if request.method == 'POST':
-        form = AssignmentForm(request.POST)
+        form = AssignmentForm(request.POST, instance=assignment_data)
         if form.is_valid():
-            form = form.cleaned_data
-            requests.put('http://'+request.get_host()+'/api/assignment/'+id+'/', form)
-        return HttpResponseRedirect("/")
-    else:
-        form_fields_req = requests.get('http://'+request.get_host()+'/api/assignment/'+id+'/')
-        form_fields = form_fields_req.json()
-        form = AssignmentForm(initial={"username": form_fields['username'], "name": form_fields['name'],
-        "date": form_fields['date'], "description": form_fields['description'],
-        "priority": form_fields['priority'], "group_members": form_fields['group_members'],
-        "module": form_fields['module']})
+            form.save()
+           # form = form.cleaned_data
+            #requests.put('http://'+request.get_host()+'/api/assignment/'+id+'/', form)
+            return HttpResponseRedirect("/")
+    # else:
+    #     form_fields_req = requests.get('http://'+request.get_host()+'/api/assignment/'+id+'/')
+    #     form_fields = form_fields_req.json()
+    #     form = AssignmentForm(initial={"username": form_fields['username'], "name": form_fields['name'],
+    #     "date": form_fields['date'], "description": form_fields['description'],
+    #     "priority": form_fields['priority'], "group_members": form_fields['group_members'],
+    #     "module": form_fields['module']})
             
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+ ##### exam_prep CRUD #####
+def addExamPrep(request):
+    if request.method == 'POST':
+        form = ExamPrepForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
+            
+    else:
+        form = ExamPrepForm()
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+def deleteExamPrep(request, id):
+    examPrep_data = ExamPrep.objects.all(id=id)
+    if request.method == 'POST':
+        examPrep_data.delete()
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def updateExamPrep(request, id):
+    examPrep_data = Homework.objects.all(id=id)
+    if request.method == 'POST':
+        form = HomeworkForm(request.POST, instance=examPrep_data)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
+
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+ ##### Finance CRUD #####
+def addFinance(request):
+    if request.method == 'POST':
+        form = FinanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
+            
+    else:
+        form = FinanceForm()
+            
+    return render(request, 'schoolapi/forms.html', {'form': form})
+
+def deleteFinance(request, id):
+    finance_data = Finance.objects.all(id=id)
+    if request.method == 'POST':
+        finance_data.delete()
+        return HttpResponseRedirect("/")
+    return render(request, "schoolapi/delete_view.html", {})
+
+def updateFinance(request, id):
+    finance_data = Finance.objects.all(id=id)
+    if request.method == 'POST':
+        form = FinanceForm(request.POST, instance=finance_data)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/")
+
     return render(request, 'schoolapi/forms.html', {'form': form})
