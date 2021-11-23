@@ -93,7 +93,7 @@ def addClass(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteClass(request, id):
-    class_data = Class.objects.all(id=id)
+    class_data = Class.objects.get(id=id)
     if request.method == 'POST':
         class_data.delete()
         return HttpResponseRedirect("/")
@@ -124,14 +124,14 @@ def addClub(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteClub(request, id):
-    club_data = Club.objects.all(id=id)
+    club_data = Club.objects.get(id=id)
     if request.method == 'POST':
         club_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateClub(request, id):
-    club_data = Club.objects.all(id=id)
+    club_data = Club.objects.get(id=id)
     form = ClubForm(instance=club_data)
     if request.method == 'POST':
         form = ClubForm(request.POST, instance=club_data)
@@ -155,14 +155,14 @@ def addEvent(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteEvent(request, id):
-    event_data = Event.objects.all(id=id)
+    event_data = Event.objects.get(id=id)
     if request.method == 'POST':
         event_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateEvent(request, id):
-    event_data = Event.objects.all(id=id)
+    event_data = Event.objects.get(id=id)
     form = EventForm(instance=event_data)
     if request.method == 'POST':
         form = EventForm(request.POST, instance = event_data)
@@ -217,14 +217,14 @@ def addHomework(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteHomework(request, id):
-    homework_data = Homework.objects.all(id=id)
+    homework_data = Homework.objects.get(id=id)
     if request.method == 'POST':
         homework_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateHomework(request, id):
-    homework_data = Homework.objects.all(id=id)
+    homework_data = Homework.objects.get(id=id)
     form = HomeworkForm(instance=homework_data)
     if request.method == 'POST':
         form = HomeworkForm(request.POST, instance=homework_data)
@@ -250,7 +250,7 @@ def addAssignment(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteAssignment(request, id):
-    assignment_data = Assignment.objects.all(id=id)
+    assignment_data = Assignment.objects.get(id=id)
     if request.method == 'POST':
         assignment_data.delete()
         #requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
@@ -258,7 +258,7 @@ def deleteAssignment(request, id):
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateAssignment(request, id):
-    assignment_data = Assignment.objects.all()
+    assignment_data = Assignment.objects.get(id=id)
     form = AssignmentForm(instance=assignment_data)
     if request.method == 'POST':
         form = AssignmentForm(request.POST, instance=assignment_data)
@@ -291,14 +291,14 @@ def addExamPrep(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteExamPrep(request, id):
-    examPrep_data = ExamPrep.objects.all(id=id)
+    examPrep_data = ExamPrep.objects.get(id=id)
     if request.method == 'POST':
         examPrep_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateExamPrep(request, id):
-    examPrep_data = Homework.objects.all(id=id)
+    examPrep_data = Homework.objects.get(id=id)
     form = ExamPrepForm(instance=examPrep_data)
     if request.method == 'POST':
         form = HomeworkForm(request.POST, instance=examPrep_data)
@@ -322,14 +322,14 @@ def addFinance(request):
     return render(request, 'schoolapi/forms.html', {'form': form})
 
 def deleteFinance(request, id):
-    finance_data = Finance.objects.all(id=id)
+    finance_data = Finance.objects.get(id=id)
     if request.method == 'POST':
         finance_data.delete()
         return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateFinance(request, id):
-    finance_data = Finance.objects.all(id=id)
+    finance_data = Finance.objects.get(id=id)
     form = FinanceForm(instance=finance_data)
     if request.method == 'POST':
         form = FinanceForm(request.POST, instance=finance_data)
