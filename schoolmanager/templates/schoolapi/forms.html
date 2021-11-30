@@ -10,15 +10,70 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
     crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {background: #DEE6E0;}
+
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .centerText {
+            text-align: center;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .horz-center {
+            justify-content: center;
+        }
+
+    </style>
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success btn-md border-0">Submit</button>
-    </form>
-    <button onclick="window.location.href='/'" class="btn btn-dark btn-md border-0">
-        Back to Dashboard
+    <div class="horz-center">
+        <div class="centerText" style="color: #1D5450; font-size: 48px; font-weight: bolder; margin-top: 2%;">
+            <p id=href></p>
+        </div>
+        <script>
+            let path = window.location.pathname;
+            let title = "";
+            for (let i = 0; i < path.length; i++) {
+                if ((/[a-zA-Z]/).test(path.charAt(i))) {
+                    title += path[i];
+                }
+                if (path.charAt(i) == "-") {
+                    title += " ";
+                }
+            }
+            var words = title.toLowerCase().split(" ");
+            for (var i = 0; i < words.length; i++) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].substring(1);
+            }
+            title = "";
+            for (var i = 0; i < words.length; i++) {
+                title += words[i] + " ";
+            }
+            document.getElementById("href").innerHTML = title;
+        </script>
+        <form class="center" method="post" style="color: #248680; font-size: 16px;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="centerText">
+                <button type="submit" style="width: 122px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 16px; margin-top: 40px;" >
+                    Submit →
+                </button>
+            </div>
+        </form>
+    </div>
+    <button onclick="window.location.href='/'" style="width: 56px; height: 56px; background: #1D5450; border-radius: 28px; color: #DEE6E0; border: none; padding: none; font-size: 20px; position: absolute; top: 32px; right: 32px;">
+        x
     </button>
 </body>
 </html>

@@ -254,7 +254,7 @@ def deleteAssignment(request, id):
     if request.method == 'POST':
         assignment_data.delete()
         #requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
-        #return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/")
     return render(request, "schoolapi/delete_view.html", {})
 
 def updateAssignment(request, id):
