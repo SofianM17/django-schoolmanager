@@ -76,48 +76,53 @@ def dashboard(request):
     # finance = response.json()
     if request.user.is_authenticated:
         return render(request, "schoolapi/dashboard.html", {})
-    return HttpResponseRedirect("logout/")
+    return HttpResponseRedirect("/login")
     #{"classes" : classes, 
     #"exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
     #"events" : events, "exam_prep" : exam_prep, "finance" : finance}
 
 ##### Class CRUD #####
 def addClass(request):
-    if request.method == 'POST':
-        form = ClassForm(request.POST)
-        if form.is_valid():
-            request.user.class_set.create(
-                name=form.cleaned_data["name"],
-                time=form.cleaned_data["time"],
-                section=form.cleaned_data["section"],
-                room=form.cleaned_data["room"]
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ClassForm(request.POST)
+            if form.is_valid():
+                request.user.class_set.create(
+                    name=form.cleaned_data["name"],
+                    time=form.cleaned_data["time"],
+                    section=form.cleaned_data["section"],
+                    room=form.cleaned_data["room"]
 
-                )
-            #form.save()
-            return HttpResponseRedirect("/")
-            
-    else:
-        form = ClassForm()
-            
-    return render(request, 'schoolapi/forms.html', {'form': form})
+                    )
+                #form.save()
+                return HttpResponseRedirect("/")
+                
+        else:
+            form = ClassForm()
+        return render(request, 'schoolapi/forms.html', {'form': form})
+    return HttpResponseRedirect("/login")
 
 def deleteClass(request, id):
-    class_data = Class.objects.get(id=id)
-    if request.method == 'POST':
-        class_data.delete()
-        return HttpResponseRedirect("/")
-    return render(request, "schoolapi/delete_view.html", {"data": class_data})
+    if request.user.is_authenticated:
+        class_data = Class.objects.get(id=id)
+        if request.method == 'POST':
+            class_data.delete()
+            return HttpResponseRedirect("/")
+        return render(request, "schoolapi/delete_view.html", {"data": class_data})
+    return HttpResponseRedirect("/login")
 
 def updateClass(request, id):
-    class_data = Class.objects.get(id=id)
-    form = ClassForm(instance=class_data)
-    if request.method == 'POST':
-        form = ClassForm(request.POST, instance=class_data)
-        if form.is_valid():
-            form.save()
-        return HttpResponseRedirect("/")
-            
-    return render(request, 'schoolapi/forms.html', {'form': form})
+    if request.user.is_authenticated:
+        class_data = Class.objects.get(id=id)
+        form = ClassForm(instance=class_data)
+        if request.method == 'POST':
+            form = ClassForm(request.POST, instance=class_data)
+            if form.is_valid():
+                form.save()
+            return HttpResponseRedirect("/")
+                
+        return render(request, 'schoolapi/forms.html', {'form': form})
+    return HttpResponseRedirect("/login")
 
 ##### Club CRUD #####
 def addClub(request):

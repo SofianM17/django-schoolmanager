@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import CharField
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import User, UserManager, AbstractBaseUser
 
 # Create your models here.
 TYPE_CHOICES = [
