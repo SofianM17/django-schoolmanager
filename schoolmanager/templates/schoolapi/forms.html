@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,42 +36,50 @@
         }
 
     </style>
+    <title>
+        Form
+    </title>
 </head>
 <body>
     <div class="horz-center">
-        <div class="centerText" style="color: #1D5450; font-size: 48px; font-weight: bolder; margin-top: 2%;">
-            <p id=href></p>
-        </div>
-        <script>
-            let path = window.location.pathname;
-            let title = "";
-            for (let i = 0; i < path.length; i++) {
-                if ((/[a-zA-Z]/).test(path.charAt(i))) {
-                    title += path[i];
-                }
-                if (path.charAt(i) == "-") {
-                    title += " ";
-                }
-            }
-            var words = title.toLowerCase().split(" ");
-            for (var i = 0; i < words.length; i++) {
-                words[i] = words[i].charAt(0).toUpperCase() + words[i].substring(1);
-            }
-            title = "";
-            for (var i = 0; i < words.length; i++) {
-                title += words[i] + " ";
-            }
-            document.getElementById("href").innerHTML = title;
-        </script>
-        <form class="center" method="post" style="color: #248680; font-size: 16px;">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div class="centerText">
-                <button type="submit" style="width: 122px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 16px; margin-top: 40px;">
-                    Submit →
-                </button>
+        <div class="d-flex justify-content-center align-items-center flex-column" style="height: 75vh;">
+            <div class="p-2" style="color: #1D5450; font-size: 48px; font-weight: bolder;">
+                <p id=href></p>
             </div>
-        </form>
+            <script>
+                let path = window.location.pathname;
+                let title = "";
+                for (let i = 0; i < path.length; i++) {
+                    if ((/[a-zA-Z]/).test(path.charAt(i))) {
+                        title += path[i];
+                    }
+                    if (path.charAt(i) == "-") {
+                        title += " ";
+                    }
+                }
+                var words = title.toLowerCase().split(" ");
+                for (var i = 0; i < words.length; i++) {
+                    words[i] = words[i].charAt(0).toUpperCase() + words[i].substring(1);
+                }
+                title = "";
+                for (var i = 0; i < words.length; i++) {
+                    title += words[i] + " ";
+                }
+                document.getElementById("href").innerHTML = title;
+            </script>
+            <form class="form-group p-2" method="post" style="color: #248680; font-size: 16px; width: 25%;">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <div class="centerText">
+                    <button type="submit"style="width: 122px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 16px; margin-top: 40px;">
+                        Submit →
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
     </div>
     <button onclick="window.location.href='/'" style="width: 56px; height: 56px; background: #1D5450; border-radius: 28px; color: #DEE6E0; border: none; padding: none; font-size: 20px; position: absolute; top: 32px; right: 32px;">
         x
