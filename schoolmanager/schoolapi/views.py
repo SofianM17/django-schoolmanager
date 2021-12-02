@@ -9,6 +9,10 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 # API
+class UserView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 class StudentView(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

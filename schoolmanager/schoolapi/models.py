@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import CharField
-from django.contrib.auth.models import User, UserManager, AbstractBaseUser
+from django.contrib.auth.models import User, UserManager
 
 # Create your models here.
 TYPE_CHOICES = [
@@ -23,14 +23,6 @@ TYPE_CHOICES = [
 
 #    class Meta:
 #        abstract = True
-
-class Student(User):
-    program = models.CharField(max_length=50)
-    objects = UserManager()
-
-class Instructor(User):
-    faculty = models.CharField(max_length=50)
-    objects = UserManager()
 
 class Class(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
