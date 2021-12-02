@@ -97,7 +97,7 @@ def deleteClass(request, id):
     if request.method == 'POST':
         class_data.delete()
         return HttpResponseRedirect("/")
-    return render(request, "schoolapi/delete_view.html", {})
+    return render(request, "schoolapi/delete_view.html", {"data": class_data})
 
 def updateClass(request, id):
     class_data = Class.objects.get(id=id)
@@ -128,7 +128,7 @@ def deleteClub(request, id):
     if request.method == 'POST':
         club_data.delete()
         return HttpResponseRedirect("/")
-    return render(request, "schoolapi/delete_view.html", {})
+    return render(request, "schoolapi/delete_view.html", {"data": club_data})
 
 def updateClub(request, id):
     club_data = Club.objects.get(id=id)
@@ -159,7 +159,7 @@ def deleteEvent(request, id):
     if request.method == 'POST':
         event_data.delete()
         return HttpResponseRedirect("/")
-    return render(request, "schoolapi/delete_view.html", {})
+    return render(request, "schoolapi/delete_view.html", {"data": event_data})
 
 def updateEvent(request, id):
     event_data = Event.objects.get(id=id)
