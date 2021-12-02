@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import CharField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, UserManager
 
 # Create your models here.
 TYPE_CHOICES = [
@@ -14,27 +14,31 @@ TYPE_CHOICES = [
     ('Other', 'Other'),
 ] 
 
-class User (models.Model):
-    username = models.CharField(max_length=50)
-    school = models.CharField(max_length=50)
+#class User (models.Model):
+#    username = models.CharField(max_length=50)
+#    school = models.CharField(max_length=50)
 
-    def __str__(self):
-        return '%s' % (self.username)
+#    def __str__(self):
+#        return '%s' % (self.username)
 
-    class Meta:
-        abstract = True
+#    class Meta:
+#        abstract = True
 
 class Student(User):
     program = models.CharField(max_length=50)
+    objects = UserManager()
 
 class Instructor(User):
     faculty = models.CharField(max_length=50)
+    objects = UserManager()
 
 class Class(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     time = models.CharField(max_length=50)
     section = models.CharField(max_length=50)
     room = models.CharField(max_length=50, blank=True)
+
 
     def __str__(self):
         return '%s' % (self.name)

@@ -9,7 +9,7 @@ def register(response):
         form = UserCreationForm(response.POST)
         if form.is_valid():
             form.save()
-        return redirect("/")
+        return redirect("/login")
     else:
         form = RegisterForm()
     

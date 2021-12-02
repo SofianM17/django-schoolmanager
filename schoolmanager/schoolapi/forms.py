@@ -8,7 +8,7 @@ from django.forms import ModelForm, TextInput
 class ClassForm(ModelForm):
     class Meta:
         model = Class
-        fields = '__all__'
+        fields = ['name', 'time', 'section', 'room']
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",

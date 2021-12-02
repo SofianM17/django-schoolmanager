@@ -13,6 +13,7 @@
     <title>Dashboard</title>
 </head>
 <body>
+    <button style="background: none; border: none;"><a href="/logout" style="color: rgb(218, 0, 0); font-weight: bold">Logout</a></button>
     <h1 style="margin: 10px">
         Dashboard
     </h1>
@@ -25,7 +26,7 @@
         <button type="button" onclick="window.location.href='/add-class'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for class in classes %}
+        {% for class in user.class_set.all %}
         <div class="classes-item border-bottom border-primary">
             <p>
                 {{class.name}}

@@ -51,40 +51,49 @@ class FinanceView(viewsets.ModelViewSet):
 
 # FRONT END
 def dashboard(request):
-    response = requests.get('http://'+request.get_host()+'/api/class/')
-    classes = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/class/')
+    # classes = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/exam/')
-    exams = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/exam/')
+    # exams = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/homework/')
-    homework = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/homework/')
+    # homework = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/assignment/')
-    assignments = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/assignment/')
+    # assignments = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/clubs/')
-    clubs = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/clubs/')
+    # clubs = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/events/')
-    events = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/events/')
+    # events = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
-    exam_prep = response.json()
+    # response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
+    # exam_prep = response.json()
 
-    response = requests.get('http://'+request.get_host()+'/api/finance/')
-    finance = response.json()
-
-    return render(request, "schoolapi/dashboard.html", {"classes" : classes, 
-    "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
-    "events" : events, "exam_prep" : exam_prep, "finance" : finance})
+    # response = requests.get('http://'+request.get_host()+'/api/finance/')
+    # finance = response.json()
+    if request.user.is_authenticated:
+        return render(request, "schoolapi/dashboard.html", {})
+    return HttpResponseRedirect("logout/")
+    #{"classes" : classes, 
+    #"exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
+    #"events" : events, "exam_prep" : exam_prep, "finance" : finance}
 
 ##### Class CRUD #####
 def addClass(request):
     if request.method == 'POST':
         form = ClassForm(request.POST)
         if form.is_valid():
-            form.save()
+            request.user.class_set.create(
+                name=form.cleaned_data["name"],
+                time=form.cleaned_data["time"],
+                section=form.cleaned_data["section"],
+                room=form.cleaned_data["room"]
+
+                )
+            #form.save()
             return HttpResponseRedirect("/")
             
     else:
