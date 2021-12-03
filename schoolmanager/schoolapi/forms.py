@@ -83,7 +83,7 @@ class ExamForm(ModelForm):
         fields = '__all__'
         exclude = ('user',)
         widgets = {
-            'cName': Select(attrs={
+            'className': Select(attrs={
                 'class': "form-control"
                 }),
             'description': TextInput(attrs={
@@ -102,7 +102,7 @@ class ExamForm(ModelForm):
                 })
         }
         labels = {
-            "cName" : "Class",
+            "className" : "Class",
             "start_time" : "Start Time"
         }
 

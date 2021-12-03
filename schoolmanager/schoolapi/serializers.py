@@ -36,7 +36,7 @@ class EventSerializer(serializers.ModelSerializer):
 class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
-        fields = ('id', 'user', 'cName', 'date', 'description', 'priority', 'start_time', 'room')
+        fields = ('id', 'user', 'className', 'date', 'description', 'priority', 'start_time', 'room')
 
 class HomeworkSerializer(serializers.ModelSerializer):
     class Meta:

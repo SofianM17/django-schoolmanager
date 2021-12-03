@@ -197,7 +197,7 @@ def addExam(request):
             form = ExamForm(request.POST)
             if form.is_valid():
                 request.user.exam_set.create(
-                cName=form.cleaned_data["cName"],
+                className=form.cleaned_data["className"],
                 date=form.cleaned_data["date"],
                 description=form.cleaned_data["description"],
                 priority=form.cleaned_data["priority"],
