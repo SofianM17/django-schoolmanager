@@ -36,16 +36,18 @@ class Class(models.Model):
         return '%s' % (self.name)
 
 class Club(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    meeting_time = models.CharField(max_length=50, blank=True)
+    meeting_time = models.TimeField(max_length=50, blank=True)
 
     def __str__(self):
         return '%s' % (self.name)
 
    
 class Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    date = models.CharField(max_length=50)
+    date = models.DateField(max_length=50)
     description = models.CharField(max_length = 1000, blank=True)
     host = models.CharField(max_length=50, blank=True)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
@@ -90,15 +92,18 @@ class Assignment(Task):
     module = models.CharField(max_length = 50, blank = True)
 
 class ExamPrep(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     PREP_CHOICES = [
-        ('prac_exam', 'Practice Exam'),
-        ('review_sess', 'Review Session'),
-        ('prep_event', 'Exam Prep Event')
+        ('Practice Exam', 'Practice Exam'),
+        ('Review Session', 'Review Session'),
+        ('Exam Prep Event', 'Exam Prep Event'),
+        ('Other', 'Other')
     ]
     prep_type = models.CharField(max_length = 100, choices = PREP_CHOICES)
     
 class Finance(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     initialBudget = models.FloatField()
     income = models.FloatField()
     tuition = models.FloatField()

@@ -41,7 +41,7 @@ class ExamSerializer(serializers.ModelSerializer):
 class HomeworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Homework
-        fields = ('id', 'name', 'name_name', 'date', 'description', 'priority', 'no_questions')
+        fields = ('id', 'user', 'className', 'date', 'description', 'priority', 'no_questions')
 
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:

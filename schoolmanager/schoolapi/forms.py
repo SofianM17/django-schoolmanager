@@ -34,28 +34,32 @@ class ClubForm(ModelForm):
     class Meta:
         model = Club
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",
                 'placeholder': 'Name'
                 }),
-            'meeting_time': TextInput(attrs={
-                'class': "form-control", 
-                'placeholder': 'Meeting Time'
+            'meeting_time': widgets.AdminTimeWidget(attrs={
+                'placeholder': 'hh:mm:ss'
                 })
+        }
+        labels = {
+            "name" : "Club Name",
+            "meeting_time" : "Club Name",
         }
 
 class EventForm(ModelForm):
     class Meta:
         model = Event
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",
                 'placeholder': 'Name'
                 }),
-            'date': TextInput(attrs={
-                'class': "form-control", 
+            'date': widgets.AdminDateWidget(attrs={
                 'placeholder': 'Date'
                 }),
             'description': TextInput(attrs={
@@ -73,10 +77,14 @@ class EventForm(ModelForm):
                 'class': "form-control"
                 })
         }
+        labels = {
+            "name" : "Event Name",
+            "type" : "Event Type",
+        }
 
 class ExamForm(ModelForm):
     date = forms.DateField(widget=widgets.AdminDateWidget(attrs={
-                'placeholder': 'yyyy-dd-mm'
+                'placeholder': 'yyyy-mm-dd'
                 }))
     class Meta:
         model = Exam
@@ -110,13 +118,13 @@ class HomeworkForm(ModelForm):
     class Meta:
         model = Homework
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
-            'name': Select(attrs={
+            'className': Select(attrs={
                 'class': "form-control"
                 }),
-            'date': TextInput(attrs={
-                'class': "form-control", 
-                'placeholder': 'Date'
+            'date': widgets.AdminDateWidget(attrs={
+                'placeholder': 'yyyy-mm-dd'
                 }),
             'description': TextInput(attrs={
                 'class': "form-control",
@@ -130,18 +138,23 @@ class HomeworkForm(ModelForm):
                 'placeholder': '# questions'
                 })
         }
+        labels = {
+            "className" : "Class",
+            "no_questions": 'Number of Questions',
+            "date": 'Due Date'
+        }
 
 class AssignmentForm(ModelForm):
     class Meta:
         model = Assignment
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
-            'name': Select(attrs={
+            'className': Select(attrs={
                 'class': "form-control"
                 }),
-            'date': TextInput(attrs={
-                'class': "form-control", 
-                'placeholder': 'Date'
+            'date': widgets.AdminDateWidget(attrs={
+                'placeholder': 'yyyy-mm-dd'
                 }),
             'description': TextInput(attrs={
                 'class': "form-control",
@@ -159,11 +172,17 @@ class AssignmentForm(ModelForm):
                 'placeholder': 'Module'
                 }),
         }
+        labels = {
+            "className" : "Class",
+            "group_members": 'Group Members',
+            "date": 'Due Date'
+        }
 
 class ExamPrepForm(ModelForm):
     class Meta:
         model = ExamPrep
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'exam': Select(attrs={
                 'class': "form-control"
@@ -177,6 +196,7 @@ class FinanceForm(ModelForm):
     class Meta:
         model = Finance
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'initialBudget': NumberInput(attrs={
                 'class': "form-control",

@@ -84,18 +84,18 @@
         <button type="button" onclick="window.location.href='/add-homework'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for hw in homework %}
+        {% for hw in user.homework_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{hw.name_name}}
+                {{hw.className}} Homework
                 <br>
-                Date: {{hw.date}}
+                Due on {{hw.date}}
                 <br>
                 Description: {{hw.description}}
                 <br>
                 Priority: {{hw.priority}}
                 <br>
-                No Questions: {{hw.no_questions}}
+                {{hw.no_questions}} Questions
             </p>
             <a href="{% url 'update-homework' hw.id%}" class=" border-0 btn btn-success">
                 Update
@@ -113,12 +113,12 @@
         <button type="button" onclick="window.location.href='/add-assignment'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for assignment in assignments %}
+        {% for assignment in user.assignment_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{assignment.name_name}}
+                {{assignment.className}} Assignment
                 <br>
-                Date: {{assignment.date}}
+                Due on {{assignment.date}}
                 <br>
                 Description: {{assignment.description}}
                 <br>
@@ -144,7 +144,7 @@
         <button type="button" onclick="window.location.href='/add-club'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for club in clubs %}
+        {% for club in user.club_set.all %}
         <div class="clubs-item border-bottom border-primary">
             <p>
                 {{club.name}}
@@ -168,7 +168,7 @@
         <button type="button" onclick="window.location.href='/add-event'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for event in events %}
+        {% for event in user.event_set.all %}
         <div class="events-item border-bottom border-primary">
             <p>
                 {{event.name}}
@@ -179,7 +179,7 @@
                 <br>
                 Host: {{event.host}}
                 <br>
-                Type: {{event.type}}
+                Event Type: {{event.type}}
                 <br>
                 Club: {{event.club_name}}
             </p>
@@ -200,18 +200,18 @@
         <button type="button" onclick="window.location.href='/add-finance'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for f in finance %}
+        {% for f in user.finance_set.all %}
         <div class="finance-item border-bottom border-primary">
             <p>
-                Initial Budget: {{f.initialBudget}}
+                Initial Budget: ${{f.initialBudget|floatformat:2}}
                 <br>
-                Income: {{f.income}}
+                Income: ${{f.income|floatformat:2}}
                 <br>
-                Tuition: {{f.tuition}}
+                Tuition: ${{f.tuition|floatformat:2}}
                 <br>
-                Equipment: {{f.equipment}}
+                Equipment: ${{f.equipment|floatformat:2}}
                 <br>
-                Books: {{f.books}}
+                Books: ${{f.books|floatformat:2}}
             </p>
             <a href="{% url 'update-finance' f.id%}" class=" border-0 btn btn-success">
                 Update
@@ -230,7 +230,7 @@
         <button type="button" onclick="window.location.href='/add-examprep'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for ep in exam_prep %}
+        {% for ep in user.examprep_set.all %}
         <div class="examPrep-item border-bottom border-primary">
             <p>
                 Exam: {{ep.exam}}
