@@ -94,6 +94,9 @@ class ExamForm(ModelForm):
             'className': Select(attrs={
                 'class': "form-control"
                 }),
+            'task_name': TextInput(attrs={
+                'class': "form-control"
+                }),
             'description': TextInput(attrs={
                 'class': "form-control",
                 'placeholder': 'Description'
@@ -111,7 +114,8 @@ class ExamForm(ModelForm):
         }
         labels = {
             "className" : "Class",
-            "start_time" : "Start Time"
+            "start_time" : "Start Time",
+            "task_name" : "Exam Name",
         }
 
 class HomeworkForm(ModelForm):
@@ -121,6 +125,9 @@ class HomeworkForm(ModelForm):
         exclude = ('user',)
         widgets = {
             'className': Select(attrs={
+                'class': "form-control"
+                }),
+            'task_name': TextInput(attrs={
                 'class': "form-control"
                 }),
             'date': widgets.AdminDateWidget(attrs={
@@ -140,6 +147,7 @@ class HomeworkForm(ModelForm):
         }
         labels = {
             "className" : "Class",
+            "task_name" : "Homework Name",
             "no_questions": 'Number of Questions',
             "date": 'Due Date'
         }
@@ -151,6 +159,9 @@ class AssignmentForm(ModelForm):
         exclude = ('user',)
         widgets = {
             'className': Select(attrs={
+                'class': "form-control"
+                }),
+            'task_name': TextInput(attrs={
                 'class': "form-control"
                 }),
             'date': widgets.AdminDateWidget(attrs={
@@ -175,7 +186,8 @@ class AssignmentForm(ModelForm):
         labels = {
             "className" : "Class",
             "group_members": 'Group Members',
-            "date": 'Due Date'
+            "date": 'Due Date',
+            "task_name" : "Assignment Name",
         }
 
 class ExamPrepForm(ModelForm):

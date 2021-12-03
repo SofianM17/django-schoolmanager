@@ -56,7 +56,9 @@
         {% for exam in user.exam_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{exam.className}} Exam
+                {{exam.className}}
+                <br>
+                {{exam.task_name}}
                 <br>
                 Date: {{exam.date}}
                 <br>
@@ -87,7 +89,9 @@
         {% for hw in user.homework_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{hw.className}} Homework
+                {{hw.className}}
+                <br>
+                {{hw.task_name}}
                 <br>
                 Due on {{hw.date}}
                 <br>
@@ -116,7 +120,9 @@
         {% for assignment in user.assignment_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{assignment.className}} Assignment
+                {{assignment.className}}
+                <br>
+                {{assignment.task_name}}
                 <br>
                 Due on {{assignment.date}}
                 <br>

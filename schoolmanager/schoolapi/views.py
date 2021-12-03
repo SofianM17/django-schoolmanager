@@ -219,6 +219,7 @@ def addExam(request):
             if form.is_valid():
                 request.user.exam_set.create(
                 className=form.cleaned_data["className"],
+                task_name=form.cleaned_data["task_name"],
                 date=form.cleaned_data["date"],
                 description=form.cleaned_data["description"],
                 priority=form.cleaned_data["priority"],
@@ -265,6 +266,7 @@ def addHomework(request):
             if form.is_valid():
                 request.user.homework_set.create(
                 className=form.cleaned_data["className"],
+                task_name=form.cleaned_data["task_name"],
                 date=form.cleaned_data["date"],
                 description=form.cleaned_data["description"],
                 priority=form.cleaned_data["priority"],
@@ -310,6 +312,7 @@ def addAssignment(request):
             if form.is_valid():
                 request.user.assignment_set.create(
                     className=form.cleaned_data["className"],
+                    task_name=form.cleaned_data["task_name"],
                     date=form.cleaned_data["date"],
                     description=form.cleaned_data["description"],
                     priority=form.cleaned_data["priority"],
