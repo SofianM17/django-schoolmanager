@@ -220,7 +220,7 @@ def deleteExam(request, id):
         if request.method == 'POST':
             exam_data.delete()
             return HttpResponseRedirect("/")
-        return render(request, "schoolapi/delete_view.html", {})
+        return render(request, "schoolapi/delete_view.html", {"data": exam_data})
     return HttpResponseRedirect("/login")
 
 def updateExam(request, id):
