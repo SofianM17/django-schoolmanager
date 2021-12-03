@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from register import views as v
+from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,6 @@ urlpatterns = [
     path('', include('schoolapi.urls')),
     path('register/', v.register, name='register'),
     path('', include("django.contrib.auth.urls")),
+    path('jsi18n', JavaScriptCatalog.as_view(), name='js-catalog')
+    
 ]

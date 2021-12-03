@@ -1,14 +1,17 @@
 from typing import Text
 from django import forms
 from django.db.models.base import Model
+from django.db.models.fields import DateField
 from django.forms.widgets import CheckboxSelectMultiple, ChoiceWidget, NumberInput, Select, SelectMultiple
 from .models import *
 from django.forms import ModelForm, TextInput
+from django.contrib.admin import widgets
 
 class ClassForm(ModelForm):
     class Meta:
         model = Class
-        fields = ['name', 'time', 'section', 'room']
+        fields = '__all__'
+        exclude = ('user',)
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",
@@ -73,16 +76,16 @@ class EventForm(ModelForm):
         }
 
 class ExamForm(ModelForm):
+    date = forms.DateField(widget=widgets.AdminDateWidget(attrs={
+                'placeholder': 'yyyy-dd-mm'
+                }))
     class Meta:
         model = Exam
         fields = '__all__'
+        exclude = ('user',)
         widgets = {
-            'name': Select(attrs={
+            'cName': Select(attrs={
                 'class': "form-control"
-                }),
-            'date': TextInput(attrs={
-                'class': "form-control", 
-                'placeholder': 'Date'
                 }),
             'description': TextInput(attrs={
                 'class': "form-control",
@@ -91,14 +94,16 @@ class ExamForm(ModelForm):
             'priority': Select(attrs={
                 'class': "form-control"
                 }),
-            'time_limit': TextInput(attrs={
-                'class': "form-control",
-                'placeholder': 'Time limit'
+            'start_time': widgets.AdminTimeWidget(attrs={
+                'placeholder': 'Time'
                 }),
             'room': TextInput(attrs={
                 'class': "form-control",
                 'placeholder': 'Room'
                 })
+        }
+        labels = {
+            "cName" : "Class"
         }
 
 class HomeworkForm(ModelForm):

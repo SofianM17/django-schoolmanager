@@ -60,8 +60,8 @@ PRIORITY_CHOICES = [
     ('Low', 'Low')
 ]
 class Task(models.Model):
-    name = models.ForeignKey(Class, on_delete=models.CASCADE)
-    date = models.CharField(max_length=50)
+    cName = models.ForeignKey(Class, on_delete=models.CASCADE)
+    date = models.DateField()
     description = models.CharField(max_length=1000, blank=True)
     priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES)
 
@@ -72,7 +72,8 @@ class Task(models.Model):
         return self.name.name
 
 class Exam(Task):
-    time_limit = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_time = models.TimeField(max_length=50)
     room = models.CharField(max_length=50)
 
     def __str__(self):

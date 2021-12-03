@@ -53,10 +53,10 @@
         <button type="button" onclick="window.location.href='/add-exam'" class="btn btn-primary btn-lg border-0">
             Add
         </button>
-        {% for exam in exams %}
+        {% for exam in user.exam_set.all %}
         <div class="exams-item border-bottom border-primary">
             <p>
-                {{exam.name_name}}
+                {{exam.cName}}
                 <br>
                 Date: {{exam.date}}
                 <br>
@@ -64,7 +64,7 @@
                 <br>
                 Priority: {{exam.priority}}
                 <br>
-                Time Limit: {{exam.time_limit}}
+                Start Time: {{exam.start_time}}
                 <br>
                 Room: {{exam.room}}
             </p>

@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,8 @@
     crossorigin="anonymous"
     />
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'admin/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/widgets.css' %}">
     <style>
         body {background: #DEE6E0;}
 
@@ -36,11 +39,14 @@
         }
 
     </style>
+    <script src="{% url 'js-catalog' %}"></script>
+    <script src="{% static '/admin/js/core.js' %}"></script>
     <title>
         Form
     </title>
 </head>
 <body>
+    {{form.media}}
     <div class="horz-center">
         <div class="d-flex justify-content-center align-items-center flex-column" style="height: 75vh;">
             <div class="p-2" style="color: #1D5450; font-size: 48px; font-weight: bolder;">

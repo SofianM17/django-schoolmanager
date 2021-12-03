@@ -192,34 +192,49 @@ def updateEvent(request, id):
 
 ##### Exam CRUD #####
 def addExam(request):
-    if request.method == 'POST':
-        form = ExamForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/")
-            
-    else:
-        form = ExamForm()
-            
-    return render(request, 'schoolapi/forms.html', {'form': form})
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ExamForm(request.POST)
+            if form.is_valid():
+                request.user.exam_set.create(
+                cName=form.cleaned_data["cName"],
+                date=form.cleaned_data["date"],
+                description=form.cleaned_data["description"],
+                priority=form.cleaned_data["priority"],
+                start_time=form.cleaned_data["start_time"],
+                room=form.cleaned_data["room"]
+
+                )
+                #form.save()
+                return HttpResponseRedirect("/")
+                
+        else:
+            form = ExamForm()
+                
+        return render(request, 'schoolapi/forms.html', {'form': form})
+    return HttpResponseRedirect("/login")
 
 def deleteExam(request, id):
-    exam_data = Exam.objects.get(id=id)
-    if request.method == 'POST':
-        exam_data.delete()
-        return HttpResponseRedirect("/")
-    return render(request, "schoolapi/delete_view.html", {})
+    if request.user.is_authenticated:
+        exam_data = Exam.objects.get(id=id)
+        if request.method == 'POST':
+            exam_data.delete()
+            return HttpResponseRedirect("/")
+        return render(request, "schoolapi/delete_view.html", {})
+    return HttpResponseRedirect("/login")
 
 def updateExam(request, id):
-    exam_data = Exam.objects.get(id=id)
-    form = ExamForm(instance=exam_data)
-    if request.method == 'POST':
-        form = ExamForm(request.POST, instance=exam_data)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/")
-            
-    return render(request, 'schoolapi/forms.html', {'form': form})
+    if request.user.is_authenticated:
+        exam_data = Exam.objects.get(id=id)
+        form = ExamForm(instance=exam_data)
+        if request.method == 'POST':
+            form = ExamForm(request.POST, instance=exam_data)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect("/")
+                
+        return render(request, 'schoolapi/forms.html', {'form': form})
+    return HttpResponseRedirect("/login")
 
  ##### Homework CRUD #####
 def addHomework(request):
