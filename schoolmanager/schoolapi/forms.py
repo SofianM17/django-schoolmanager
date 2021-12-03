@@ -17,9 +17,8 @@ class ClassForm(ModelForm):
                 'class': "form-control",
                 'placeholder': 'Name'
                 }),
-            'time': TextInput(attrs={
-                'class': "form-control", 
-                'placeholder': 'Time'
+            'time': widgets.AdminTimeWidget(attrs={
+                'placeholder': 'hh:mm:ss'
                 }),
             'section': TextInput(attrs={
                 'class': "form-control",
@@ -95,7 +94,7 @@ class ExamForm(ModelForm):
                 'class': "form-control"
                 }),
             'start_time': widgets.AdminTimeWidget(attrs={
-                'placeholder': 'Time'
+                'placeholder': 'hh:mm:ss'
                 }),
             'room': TextInput(attrs={
                 'class': "form-control",
@@ -103,7 +102,8 @@ class ExamForm(ModelForm):
                 })
         }
         labels = {
-            "cName" : "Class"
+            "cName" : "Class",
+            "start_time" : "Start Time"
         }
 
 class HomeworkForm(ModelForm):

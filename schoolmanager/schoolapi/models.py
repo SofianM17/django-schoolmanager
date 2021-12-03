@@ -27,7 +27,7 @@ TYPE_CHOICES = [
 class Class(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    time = models.CharField(max_length=50)
+    time = models.TimeField(max_length=50)
     section = models.CharField(max_length=50)
     room = models.CharField(max_length=50, blank=True)
 
