@@ -74,6 +74,9 @@
         <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
+        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item" style="margin-left: 50px;">
+            <img src="{% static 'schoolapi/images/sub.png' %}">
+        </button>
         {% for f in finance %}
         <div class="item-attributes">
             <div class="item-background">
@@ -94,7 +97,9 @@
                 <li>
                     Books: ${{f.books|floatformat:2}}
                 </li>
-
+                <li>
+                    Total: ${{f.initialBudget}}
+                </li>
                 <li id="btn-update-item">
                     <a href="{% url 'update-finance' f.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">

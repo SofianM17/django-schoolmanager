@@ -10,7 +10,8 @@ body {
 
 nav .title {
     position: absolute;
-    width: 330px;
+    /* width: 330px; */
+    width: 400px;
     height: 143px;
     left: 149px;
     top: 0px;
@@ -43,7 +44,7 @@ nav .title {
 .side-nav-container {
     position: absolute;
     width: 150px;
-    height: 100%;
+    height: 160%;
     left: 0px;
     top: 143px;
     background: #248680;
