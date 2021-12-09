@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.dashboard),
     path('finances/', views.finances),
     path('tasks/', views.tasks),
+    path('clubsEvents/', views.clubsEvents),
 
     path('add-class/', views.addClass),
     path('delete-class/<id>', views.deleteClass, name='delete-class'),
