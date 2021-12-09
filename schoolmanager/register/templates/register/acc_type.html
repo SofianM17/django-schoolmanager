@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +35,10 @@
 </head>
 <body>
     <div class="d-flex p-2 flex-column justify-content-center align-items-center" style="height: 75vh; color: #248680">
-        <p style="color: #1D5450; font-size: 36px; font-weight: bolder; margin-top: 2%;">
+        <div class="logo">
+            <img src="{% static 'schoolapi/images/logos.png' %}" alt="My image">
+        </div>
+        <p style="color: #1D5450; font-size: 36px; font-weight: bolder;">
             I am a(n)...
         </p>
         <div class="d-flex justify-content-center align-items-center" style="width: 100%; margin-top: 1%;">
