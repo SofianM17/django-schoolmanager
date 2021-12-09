@@ -15,22 +15,12 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
-<style>
-    .row {
-    width: 100%;
-    margin: 0 auto;
-    }
-    .block {
-    width: 300px;
-    display: inline-block
-    }
-</style>
 <body>
     <div class="top-nav-container">
         <div class="wrapper">
-            <nav role ="main">
+            <nav role="main">
                 <div class="title">
-                    Dashboard
+                    Finance
                 </div>
 
                 <div class="logo">
@@ -52,7 +42,7 @@
 
     <div class="side-nav-container">
 
-        <div class="sidebar">
+        <div class="sidebar" style="top: 150px;">
         </div>
 
         <div class="wrapper">
@@ -77,40 +67,42 @@
 
     </div>
 
-
-    <div class="classes-container row">
+    <div class="finances-container">
         <div class="item-title">
-            Classes
+            Finance
         </div>
-        <button type="button" onclick="window.location.href='/add-class'" class="btn-add-item">
+        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for class in classes %}
-        <div class="item-attribute block">
+        {% for f in finance %}
+        <div class="item-attributes">
             <div class="item-background">
             </div>
             <ul class="show-items">
-                <li id="name">
-                    {{class.name}}
+                <li id="name" style="padding-left: 25px;">
+                    Initial Budget: ${{f.initialBudget|floatformat:2}}
                 </li>
                 <li>
-                    Time: {{class.time}}
+                    Income: ${{f.income|floatformat:2}}
                 </li>
                 <li>
-                    Section: {{class.section}}
+                    Tuition: ${{f.tuition|floatformat:2}}
                 </li>
                 <li>
-                    Room: {{class.room}}
+                    Equipment: ${{f.equipment|floatformat:2}}
+                </li>
+                <li>
+                    Books: ${{f.books|floatformat:2}}
                 </li>
 
                 <li id="btn-update-item">
-                    <a href="{% url 'update-class' class.id%}">
+                    <a href="{% url 'update-finance' f.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">
                     </a>
                 </li>
 
                 <li id="btn-delete-item">
-                    <a href="{% url 'delete-class' class.id%}">
+                    <a href="{% url 'delete-finance' f.id%}">
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>
@@ -123,6 +115,10 @@
         </div>
         {% endfor %}
     </div>
+
+
+
+
 
 </body>
 </html>

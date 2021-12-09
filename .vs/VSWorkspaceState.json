@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\schoolmanager",
+    "\\schoolmanager\\schoolapi",
+    "\\schoolmanager\\schoolapi\\migrations",
+    "\\schoolmanager\\schoolapi\\static",
+    "\\schoolmanager\\schoolapi\\static\\schoolapi",
+    "\\schoolmanager\\schoolapi\\static\\schoolapi\\images",
+    "\\schoolmanager\\schoolmanager",
+    "\\schoolmanager\\templates",
+    "\\schoolmanager\\templates\\schoolapi"
+  ],
+  "SelectedNode": "\\schoolmanager\\schoolapi\\models.py",
+  "PreviewInSolutionExplorer": false
+}

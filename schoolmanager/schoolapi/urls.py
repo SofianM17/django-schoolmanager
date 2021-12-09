@@ -1,6 +1,9 @@
 from django.urls import path, include
 from . import views
 from rest_framework import routers, viewsets
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register('users', views.UserView)
@@ -18,6 +21,9 @@ router.register('finance', views.FinanceView)
 urlpatterns = [
     path('api/', include(router.urls), name='api'),
     path('', views.dashboard),
+    path('finances/', views.finances),
+    path('tasks/', views.tasks),
+    path('clubsEvents/', views.clubsEvents),
 
     path('add-class/', views.addClass),
     path('delete-class/<id>', views.deleteClass, name='delete-class'),
