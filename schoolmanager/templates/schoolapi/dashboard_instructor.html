@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'schoolapi/css/style.css' %}" />
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+</head>
+<style>
+    .row {
+    width: 100%;
+    margin: 0 auto;
+    }
+    .block {
+    width: 300px;
+    display: inline-block
+    }
+</style>
+<body>
+    <div class="top-nav-container">
+        <div class="wrapper">
+            <nav role ="main">
+                <div class="title">
+                    Dashboard
+                </div>
+
+                <div class="logo">
+                    <img src="{% static 'schoolapi/images/logos.png' %}" alt="My image">
+                </div>
+
+                <div class="username">
+                    Username
+                </div>
+
+                <div class="logout" href="#">
+                    <a href="#">Logout</a>
+                </div>
+
+            </nav>
+        </div>
+
+    </div>
+
+    <div class="side-nav-container">
+
+        <div class="sidebar">        
+        </div>
+
+        <div class="wrapper">
+            <nav id="menubar">
+                <ul class="nav-items">
+                    <li>
+                        <a href="/">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/tasks_instructor">Tasks</a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+
+    </div>
+
+
+    <div class="classes-container row">
+        <div class="item-title">
+            Classes
+        </div>
+        <button type="button" onclick="window.location.href='/add-class'" class="btn-add-item">
+            <img src="{% static 'schoolapi/images/add.png' %}">
+        </button>
+        {% for class in classes %}
+        <div class="item-attribute block">
+            <div class="item-background">
+            </div>
+            <ul class="show-items">
+                <li id="name">
+                    {{class.name}}
+                </li>
+                <li>
+                    Time: {{class.time}}
+                </li>
+                <li>
+                    Section: {{class.section}}
+                </li>
+                <li>
+                    Room: {{class.room}}
+                </li>
+
+                <li id="btn-update-item">
+                    <a href="{% url 'update-class' class.id%}">
+                        <img src="{% static 'schoolapi/images/edit.png' %}">
+                    </a>
+                </li>
+
+                <li id="btn-delete-item">
+                    <a href="{% url 'delete-class' class.id%}">
+                        <img src="{% static 'schoolapi/images/Delete.png' %}">
+                    </a>
+                </li>
+
+            </ul>
+
+           
+
+            
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

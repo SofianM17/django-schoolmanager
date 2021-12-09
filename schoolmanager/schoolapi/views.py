@@ -75,7 +75,7 @@ def dashboard(request):
     response = requests.get('http://'+request.get_host()+'/api/finance/')
     finance = response.json()
 
-    return render(request, "schoolapi/dashboard.html", {"classes" : classes, 
+    return render(request, "schoolapi/dashboard_instructor.html", {"classes" : classes, 
     "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
     "events" : events, "exam_prep" : exam_prep, "finance" : finance})
 
