@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('schoolapi.urls')),
     path('register/', v.register, name='register'),
     path('', include("django.contrib.auth.urls")),
-    path('jsi18n', JavaScriptCatalog.as_view(), name='js-catalog')
+    path('jsi18n', JavaScriptCatalog.as_view(), name='js-catalog'),
+    path('acc_type/', v.acc_type, name='acc_type')
 ]

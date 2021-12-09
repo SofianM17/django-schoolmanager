@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {background: #DEE6E0;}
+
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .centerText {
+            text-align: center;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <title>Register</title>
+</head>
+<body>
+    <div class="d-flex p-2 flex-column justify-content-center align-items-center" style="height: 75vh; color: #248680">
+        <p style="color: #1D5450; font-size: 36px; font-weight: bolder; margin-top: 2%;">
+            I am a(n)...
+            <!-- '{{data.name}}' -->
+        </p>
+        <div class="d-flex justify-content-center align-items-center" style="width: 100%; margin-top: 1%;">
+            <button onclick="window.location.href='/register';" class="btn btn-success" style="width: 145px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 24px; margin-right: 1%;">
+                Student
+            </button>
+            <button onclick="window.location.href='/register';" class="btn btn-success" style="width: 145px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 24px;">
+                Instructor
+            </button>
+        </div>
+        <p class="p-2">
+            Have an account? Login <a href="/login">here</a>.
+        </p>
+    </div>
+</body>
+</html>
