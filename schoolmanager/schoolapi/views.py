@@ -86,33 +86,9 @@ def dashboard(request):
     #"events" : events, "exam_prep" : exam_prep, "finance" : finance}
 
 def finances(request):
-    response = requests.get('http://'+request.get_host()+'/api/class/')
-    classes = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam/')
-    exams = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/homework/')
-    homework = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/assignment/')
-    assignments = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/clubs/')
-    clubs = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/events/')
-    events = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
-    exam_prep = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/finance/')
-    finance = response.json()
-
-    return render(request, "schoolapi/finances.html", {"classes" : classes, 
-    "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
-    "events" : events, "exam_prep" : exam_prep, "finance" : finance})
+    if request.user.is_authenticated:
+        return render(request, "schoolapi/finances.html", {})
+    return HttpResponseRedirect("/login")
 
 def tasks(request):
     if request.user.is_authenticated:
