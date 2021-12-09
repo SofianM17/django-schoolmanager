@@ -115,64 +115,14 @@ def finances(request):
     "events" : events, "exam_prep" : exam_prep, "finance" : finance})
 
 def tasks(request):
-    response = requests.get('http://'+request.get_host()+'/api/class/')
-    classes = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam/')
-    exams = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/homework/')
-    homework = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/assignment/')
-    assignments = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/clubs/')
-    clubs = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/events/')
-    events = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
-    exam_prep = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/finance/')
-    finance = response.json()
-
-    return render(request, "schoolapi/tasks.html", {"classes" : classes, 
-    "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
-    "events" : events, "exam_prep" : exam_prep, "finance" : finance})
+    if request.user.is_authenticated:
+        return render(request, "schoolapi/tasks.html", {})
+    return HttpResponseRedirect("/login")
 
 def clubsEvents(request):
-    response = requests.get('http://'+request.get_host()+'/api/class/')
-    classes = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam/')
-    exams = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/homework/')
-    homework = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/assignment/')
-    assignments = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/clubs/')
-    clubs = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/events/')
-    events = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/exam_prep/')
-    exam_prep = response.json()
-
-    response = requests.get('http://'+request.get_host()+'/api/finance/')
-    finance = response.json()
-
-    return render(request, "schoolapi/clubsEvents.html", {"classes" : classes, 
-    "exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
-    "events" : events, "exam_prep" : exam_prep, "finance" : finance})
-
-
+    if request.user.is_authenticated:
+        return render(request, "schoolapi/clubsEvents.html", {})
+    return HttpResponseRedirect("/login")
 
 ##### Class CRUD #####
 def addClass(request):
@@ -227,7 +177,7 @@ def addClub(request):
                     name=form.cleaned_data["name"],
                     meeting_time=form.cleaned_data["meeting_time"],
                 )
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/clubsEvents")
         else:
             form = ClubForm()
                 
@@ -239,7 +189,7 @@ def deleteClub(request, id):
         club_data = Club.objects.get(id=id)
         if request.method == 'POST':
             club_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/clubsEvents")
         return render(request, "schoolapi/delete_view.html", {"data": club_data})
     return HttpResponseRedirect("/login")
 
@@ -251,7 +201,7 @@ def updateClub(request, id):
             form = ClubForm(request.POST, instance=club_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/clubsEvents")
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -270,7 +220,7 @@ def addEvent(request):
                     type=form.cleaned_data["type"],
                     club=form.cleaned_data["club"],
                 )
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/clubsEvents")
                 
         else:
             form = EventForm()
@@ -283,7 +233,7 @@ def deleteEvent(request, id):
         event_data = Event.objects.get(id=id)
         if request.method == 'POST':
             event_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/clubsEvents")
         return render(request, "schoolapi/delete_view.html", {"data": event_data})
     return HttpResponseRedirect("/login")
 
@@ -295,7 +245,7 @@ def updateEvent(request, id):
             form = EventForm(request.POST, instance = event_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/clubsEvents")
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -317,7 +267,7 @@ def addExam(request):
 
                 )
                 #form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
                 
         else:
             form = ExamForm()
@@ -330,7 +280,7 @@ def deleteExam(request, id):
         exam_data = Exam.objects.get(id=id)
         if request.method == 'POST':
             exam_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/tasks")
         return render(request, "schoolapi/delete_view.html", {"data": exam_data})
     return HttpResponseRedirect("/login")
 
@@ -342,7 +292,7 @@ def updateExam(request, id):
             form = ExamForm(request.POST, instance=exam_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -363,7 +313,7 @@ def addHomework(request):
 
                 )
                 #form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
                 
         else:
             form = HomeworkForm()
@@ -376,7 +326,7 @@ def deleteHomework(request, id):
         homework_data = Homework.objects.get(id=id)
         if request.method == 'POST':
             homework_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/tasks")
         return render(request, "schoolapi/delete_view.html", {})
     return HttpResponseRedirect("/login")
 
@@ -388,7 +338,7 @@ def updateHomework(request, id):
             form = HomeworkForm(request.POST, instance=homework_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -409,7 +359,7 @@ def addAssignment(request):
                     module=form.cleaned_data["module"],
                 )
                 #form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
         else:
             form = AssignmentForm()
                 
@@ -422,7 +372,7 @@ def deleteAssignment(request, id):
         if request.method == 'POST':
             assignment_data.delete()
             #requests.delete('http://'+request.get_host()+'/api/assignment/'+id+'/')
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/tasks")
         return render(request, "schoolapi/delete_view.html", {})
     return HttpResponseRedirect("/login")
 
@@ -436,7 +386,7 @@ def updateAssignment(request, id):
                 form.save()
             # form = form.cleaned_data
                 #requests.put('http://'+request.get_host()+'/api/assignment/'+id+'/', form)
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
         # else:
         #     form_fields_req = requests.get('http://'+request.get_host()+'/api/assignment/'+id+'/')
         #     form_fields = form_fields_req.json()
@@ -458,7 +408,7 @@ def addExamPrep(request):
                     exam=form.cleaned_data["exam"],
                     prep_type=form.cleaned_data["prep_type"],
                 )
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
                 
         else:
             form = ExamPrepForm()
@@ -471,7 +421,7 @@ def deleteExamPrep(request, id):
         examPrep_data = ExamPrep.objects.get(id=id)
         if request.method == 'POST':
             examPrep_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/tasks")
         return render(request, "schoolapi/delete_view.html", {})
     return HttpResponseRedirect("/login")
 
@@ -483,7 +433,7 @@ def updateExamPrep(request, id):
             form = HomeworkForm(request.POST, instance=examPrep_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/tasks")
 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -502,7 +452,7 @@ def addFinance(request):
                     books=form.cleaned_data["books"],
 
                 )
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/finances")
                 
         else:
             form = FinanceForm()
@@ -515,7 +465,7 @@ def deleteFinance(request, id):
         finance_data = Finance.objects.get(id=id)
         if request.method == 'POST':
             finance_data.delete()
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/finances")
         return render(request, "schoolapi/delete_view.html", {})
     return HttpResponseRedirect("/login")
 
@@ -527,7 +477,7 @@ def updateFinance(request, id):
             form = FinanceForm(request.POST, instance=finance_data)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/finances")
 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
