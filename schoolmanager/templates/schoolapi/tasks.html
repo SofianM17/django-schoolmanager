@@ -123,17 +123,17 @@
         {% endfor %}
     </div>
     <div class="exam_prep-container row">
-        <div class="item-title" style="margin-top: 390px">
+        <div class="item-title" style="margin-top: 360px">
             Exam Prep
         </div>
-        <button type="button" onclick="window.location.href='/add-examprep'" class="btn-add-item" style="margin-top: 390px; margin-left: 50px;">
+        <button type="button" onclick="window.location.href='/add-examprep'" class="btn-add-item" style="margin-top: 360px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
         {% for e in exam_prep %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items" style="position: absolute; margin-top: 490px;">
+            <ul class="show-items" style="position: absolute; margin-top: 460px;">
                 <li id="name">
                     {{e.exam}}
                 </li>
@@ -161,17 +161,17 @@
     </div>
 
     <div class="homework-container row">
-        <div class="item-title" style="margin-top: 790px">
+        <div class="item-title" style="margin-top: 700px">
             Homework
         </div>
-        <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 790px; margin-left: 50px;">
+        <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 700px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
         {% for hw in homework %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items" style="position: absolute; margin-top: 890px;">
+            <ul class="show-items" style="position: absolute; margin-top: 800px;">
                 <li id="name">
                     {{hw.name}}
                 </li>
@@ -207,17 +207,17 @@
     </div>
 
     <div class="assignment-container row">
-        <div class="item-title" style="margin-top: 1190px">
+        <div class="item-title" style="margin-top: 1060px">
             Assignment
         </div>
-        <button type="button" onclick="window.location.href='/add-assignment'" class="btn-add-item" style="margin-top: 1190px; margin-left: 70px;">
+        <button type="button" onclick="window.location.href='/add-assignment'" class="btn-add-item" style="margin-top: 1060px; margin-left: 70px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
         {% for assignment in assignments %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items" style="position: absolute; margin-top: 1290px;">
+            <ul class="show-items" style="position: absolute; margin-top: 1160px;">
                 <li id="name">
                     {{assignment.name}}
                 </li>
