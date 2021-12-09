@@ -28,7 +28,6 @@
     {% endblock %} -->
     {% block content %}
     <div class="d-flex p-2 justify-content-center align-items-center flex-column" style="">
-        <img src="sms.png" style="margin-bottom: 3%">
         <form method="post" class="form-group" style="width: 25%; color: #248680">
             {%csrf_token%}
             {{form|crispy}}
@@ -36,6 +35,9 @@
                 <button type="submit" class="btn btn-success" style="width: 122px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 16px; margin-top: 40px;">
                     Register
                 </button>
+                <p class="p-2">
+                    Have an account? Login <a href="/login">here</a>.
+                </p>
             </div>
         </form>
     </div>

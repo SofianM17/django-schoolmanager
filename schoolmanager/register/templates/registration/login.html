@@ -26,11 +26,10 @@
     Login Here
     {% endblock %} -->
     {% block content %}
-    <div class="d-flex p-2 justify-content-center align-items-center flex-column" style="">
+    <div class="d-flex p-2 justify-content-center align-items-center flex-column" id="login">
         <div class="p-2" style="color: #1D5450; font-size: 48px; font-weight: bolder; margin-bottom: 1%">
             Study Management System
         </div>
-        <img src="sms.png" style="margin-bottom: 3%"> 
         <form method="post" class="form-group" style="width: 25%; color: #248680">
             {% csrf_token %}
             {{form|crispy}}
@@ -39,7 +38,7 @@
                     Login
                 </button>
                 <p class="p-2">
-                    Dont have an account? Create one <a href="/register">here</a>.
+                    Don't have an account? Create one <a href="/register">here</a>.
                 </p>
             </div>
         </form>
