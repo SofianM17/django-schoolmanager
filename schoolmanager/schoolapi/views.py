@@ -79,7 +79,8 @@ def dashboard(request):
     # response = requests.get('http://'+request.get_host()+'/api/finance/')
     # finance = response.json()
     if request.user.is_authenticated:
-        return render(request, "schoolapi/dashboard.html", {})
+        classes = Class.objects.all()
+        return render(request, "schoolapi/dashboard.html", {'classes': classes})
     return HttpResponseRedirect("/login")
     #{"classes" : classes, 
     #"exams" : exams, "homework" : homework, "assignments" : assignments, "clubs" : clubs,
@@ -87,17 +88,25 @@ def dashboard(request):
 
 def finances(request):
     if request.user.is_authenticated:
-        return render(request, "schoolapi/finances.html", {})
+        finance = Finance.objects.all()
+        return render(request, "schoolapi/finances.html", {'finance': finance})
     return HttpResponseRedirect("/login")
 
 def tasks(request):
     if request.user.is_authenticated:
-        return render(request, "schoolapi/tasks.html", {})
+        exams = Exam.objects.all()
+        exam_prep = ExamPrep.objects.all()
+        homework = Homework.objects.all()
+        assignments = Assignment.objects.all()
+        return render(request, "schoolapi/tasks.html", {'exams': exams, 'exam_prep': exam_prep,
+        'homework': homework, 'assignments': assignments})
     return HttpResponseRedirect("/login")
 
 def clubsEvents(request):
     if request.user.is_authenticated:
-        return render(request, "schoolapi/clubsEvents.html", {})
+        clubs = Club.objects.all()
+        events = Event.objects.all()
+        return render(request, "schoolapi/clubsEvents.html", {'clubs': clubs, 'events': events})
     return HttpResponseRedirect("/login")
 
 ##### Class CRUD #####
