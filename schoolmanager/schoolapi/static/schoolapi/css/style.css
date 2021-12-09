@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: #DEE6E0;
+}
+
+
+nav .title {
+    position: absolute;
+    width: 330px;
+    height: 143px;
+    left: 149px;
+    top: 0px;
+    color: #248680;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 59px;
+    display: flex;
+    align-items: center;
+}
+/* Top Navigation */
+
+.top-nav-container {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    height: 143px;
+    left: 0px;
+    top: 0px;
+}
+
+.side-nav-container {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    left: 0px;
+    top: 143px;
+    background: #248680;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar {
+    position: absolute;
+    width: 5px;
+    height: 50px;
+    left: 145px;
+    top: 0px;
+    background: #82E4D0;
+}
+
+.item-title {
+    position: absolute;
+    width: 225px;
+    height: 100px;
+    left: 203px;
+    top: 143px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    color: #1D5450;
+}
+
+nav [role = "main"]{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1470px;
+    height: 143px;
+    left: 0px;
+    top: 0px;
+}
+
+nav [id="menubar"] {
+    padding: 0;
+    display: flex;
+    position: absolute;
+    width: 127px;
+    height: 697px;
+    left: 0px;
+    top: 143px;
+    color: #248680;
+    background: #248680;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+nav .logo {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: -35px;
+    top: -17px;
+}
+
+nav .logout {
+    position: absolute;
+    width: 57px;
+    height: 21px;
+    left: 1780px;
+    top: 42px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ff0000;
+}
+
+nav .logout a {
+    color: #ff0000;
+}
+
+nav .username {
+    position: absolute;
+    width: 133px;
+    height: 42px;
+    left: 1760px;
+    top: 0px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #82E4D0;
+}
+
+.nav-items li {
+    
+    width: 127px;
+    height: 50px;
+    left: 0px;
+    top: 243px;
+    list-style: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    
+    color: #FFFFFF;
+}
+
+ul.show-items {
+    display: table;
+    margin: 0 auto;
+    text-align: left;
+    margin-left: 180px;
+    margin-top: 100px;
+    width: 230px;
+    height: 234px;
+    list-style: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1D5450;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background: #FFFFFF;
+}
+
+.show-items li {
+    display: flex;
+    z-index: auto;
+    margin-top: 10px;
+    width: 240px;
+    height: 18px;
+    list-style: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #1D5450;
+}
+
+#name {
+    padding-left: 50px;
+    margin-top: 20px;
+    height: 50px;
+    color: #82E4D0;
+    font-size: 24px;
+}
+.show-items li a {
+    color: #1D5450;
+}
+
+.nav-items li a {
+    color: #FFFFFF;
+}
+
+.btn-add-item {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 360px;
+    top: 173px;
+    background: transparent;
+    border: none !important;
+}
+
+#btn-update-item {
+    display: inline;
+    padding-left: 140px;
+    width: 33px;
+    height: 33px;
+    background: transparent;
+    border: none !important;
+}
+#btn-delete-item {
+    line-height: 80px;
+    display: inline;
+    padding-left: 8px;
+    width: 32px;
+    height: 33px;
+    background: transparent;
+    border: none !important;
+}
+

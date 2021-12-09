@@ -1,4 +1,4 @@
-﻿{% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +28,9 @@
 <body>
     <div class="top-nav-container">
         <div class="wrapper">
-            <nav role ="main">
+            <nav role="main">
                 <div class="title">
-                    Dashboard
+                    Tasks
                 </div>
 
                 <div class="logo">
@@ -52,7 +52,7 @@
 
     <div class="side-nav-container">
 
-        <div class="sidebar">        
+        <div class="sidebar" style="top: 50px;">
         </div>
 
         <div class="wrapper">
@@ -77,49 +77,94 @@
 
     </div>
 
-
-    <div class="classes-container row">
+    <div class="exams-container row">
         <div class="item-title">
-            Classes
+            Exams
         </div>
-        <button type="button" onclick="window.location.href='/add-class'" class="btn-add-item">
+        <button type="button" onclick="window.location.href='/add-exam'" class="btn-add-item" style="left: 330px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for class in classes %}
-        <div class="item-attribute block">
+        {% for exam in exams %}
+        <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items">
+            <ul class="show-items" style="position: absolute;">
                 <li id="name">
-                    {{class.name}}
+                    {{exam.name_name}}
                 </li>
                 <li>
-                    Time: {{class.time}}
+                    Date: {{exam.date}}
                 </li>
                 <li>
-                    Section: {{class.section}}
+                    Description: {{exam.description}}
                 </li>
                 <li>
-                    Room: {{class.room}}
+                    Start Time: {{exam.start_time}}
+                </li>
+                <li>
+                    Room: {{exam.room}}
                 </li>
 
-                <li id="btn-update-item">
-                    <a href="{% url 'update-class' class.id%}">
+                <li id="btn-update-exam">
+                    <a href="{% url 'update-exam' exam.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">
                     </a>
                 </li>
 
                 <li id="btn-delete-item">
-                    <a href="{% url 'delete-class' class.id%}">
+                    <a href="{% url 'delete-exam' exam.id%}">
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>
 
             </ul>
 
-           
+        </div>
+        {% endfor %}
+    </div>
 
-            
+    <div class="homework-container row">
+        <div class="item-title" style="margin-top: 390px">
+            Homework
+        </div>
+        <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 390px; margin-left: 50px;">
+            <img src="{% static 'schoolapi/images/add.png' %}">
+        </button>
+        {% for hw in homework %}
+        <div class="item-attributes block">
+            <div class="item-background">
+            </div>
+            <ul class="show-items" style="position: absolute; margin-top: 490px;">
+                <li id="name">
+                    {{hw.name_name}}
+                </li>
+                <li>
+                    Date: {{hw.date}}
+                </li>
+                <li>
+                    Description: {{hw.description}}
+                </li>
+                <li>
+                    Start Time: {{hw.start_time}}
+                </li>
+                <li>
+                    Room: {{hw.room}}
+                </li>
+
+                <li id="btn-update-homework">
+                    <a href="{% url 'update-homework' hw.id%}">
+                        <img src="{% static 'schoolapi/images/edit.png' %}">
+                    </a>
+                </li>
+
+                <li id="btn-delete-item">
+                    <a href="{% url 'delete-homework' hw.id%}">
+                        <img src="{% static 'schoolapi/images/Delete.png' %}">
+                    </a>
+                </li>
+
+            </ul>
+
         </div>
         {% endfor %}
     </div>
