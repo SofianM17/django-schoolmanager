@@ -11,19 +11,33 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
     crossorigin="anonymous"
     />
-    <title>Dashboard</title>
+    <title>Study Management System</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        body {background: #DEE6E0;}
+
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 </head>
 <body>
-    {% block title %}
+    <!-- {% block title %}
     Login Here
-    {% endblock %}
+    {% endblock %} -->
     {% block content %}
-    <div class="d-flex p-2 justify-content-center" style="">
-        <form method="post" class="form-group" style="width: 25%;">
+    <div class="d-flex p-2 justify-content-center align-items-center flex-column" style="">
+        <div class="p-2" style="color: #1D5450; font-size: 48px; font-weight: bolder; margin-bottom: 1%">
+            Study Management System
+        </div>
+        <img src="sms.png" style="margin-bottom: 3%"> 
+        <form method="post" class="form-group" style="width: 25%; color: #248680">
             {% csrf_token %}
             {{form|crispy}}
             <div class=" d-flex flex-column justify-content-sm-between align-items-center" style="height: 50%; margin-top: 5%">
-                <button type='submit' class="p-2 btn btn-success" style="width: 30%;">Login</button>
+                <button type='submit' class="p-2 btn btn-success" style="width: 122px; height: 48px; background: #1D5450; color: #DEE6E0; border-radius: 10px; border: none; padding: none; font-size: 16px; margin-top: 40px;">
+                    Login
+                </button>
                 <p class="p-2">
                     Dont have an account? Create one <a href="/register">here</a>.
                 </p>
