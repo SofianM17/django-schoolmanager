@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +65,7 @@
                         <a href="/tasks">Tasks</a>
                     </li>
                     <li>
-                        <a href="#">Clubs & Events</a>
+                        <a href="/clubsEvents">Clubs & Events</a>
                     </li>
                     <li>
                         <a href="/finances">Finance</a>
@@ -105,7 +105,7 @@
                     Room: {{exam.room}}
                 </li>
 
-                <li id="btn-update-exam">
+                <li id="btn-update-item">
                     <a href="{% url 'update-exam' exam.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">
                     </a>
@@ -122,19 +122,56 @@
         </div>
         {% endfor %}
     </div>
+    <div class="exam_prep-container row">
+        <div class="item-title" style="margin-top: 390px">
+            Exam Prep
+        </div>
+        <button type="button" onclick="window.location.href='/add-examprep'" class="btn-add-item" style="margin-top: 390px; margin-left: 50px;">
+            <img src="{% static 'schoolapi/images/add.png' %}">
+        </button>
+        {% for e in exam_prep %}
+        <div class="item-attributes block">
+            <div class="item-background">
+            </div>
+            <ul class="show-items" style="position: absolute; margin-top: 490px;">
+                <li id="name">
+                    {{e.exam}}
+                </li>
+                <li>
+                    Prep Type: {{e.prep_type}}
+                </li>
+               
+
+                <li id="btn-update-item">
+                    <a href="{% url 'update-examprep' e.id%}">
+                        <img src="{% static 'schoolapi/images/edit.png' %}">
+                    </a>
+                </li>
+
+                <li id="btn-delete-item">
+                    <a href="{% url 'delete-examprep' e.id%}">
+                        <img src="{% static 'schoolapi/images/Delete.png' %}">
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+        {% endfor %}
+    </div>
 
     <div class="homework-container row">
-        <div class="item-title" style="margin-top: 390px">
+        <div class="item-title" style="margin-top: 790px">
             Homework
         </div>
-        <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 390px; margin-left: 50px;">
+        <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 790px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
         {% for hw in homework %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items" style="position: absolute; margin-top: 490px;">
+            <ul class="show-items" style="position: absolute; margin-top: 890px;">
                 <li id="name">
                     {{hw.name_name}}
                 </li>
@@ -145,13 +182,13 @@
                     Description: {{hw.description}}
                 </li>
                 <li>
-                    Start Time: {{hw.start_time}}
+                    Priority: {{hw.priority}}
                 </li>
                 <li>
-                    Room: {{hw.room}}
+                    No Questions: {{hw.no_questions}}
                 </li>
 
-                <li id="btn-update-homework">
+                <li id="btn-update-item">
                     <a href="{% url 'update-homework' hw.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">
                     </a>
@@ -159,6 +196,55 @@
 
                 <li id="btn-delete-item">
                     <a href="{% url 'delete-homework' hw.id%}">
+                        <img src="{% static 'schoolapi/images/Delete.png' %}">
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="assignment-container row">
+        <div class="item-title" style="margin-top: 1190px">
+            Assignment
+        </div>
+        <button type="button" onclick="window.location.href='/add-assignment'" class="btn-add-item" style="margin-top: 1190px; margin-left: 70px;">
+            <img src="{% static 'schoolapi/images/add.png' %}">
+        </button>
+        {% for assignment in assignments %}
+        <div class="item-attributes block">
+            <div class="item-background">
+            </div>
+            <ul class="show-items" style="position: absolute; margin-top: 1290px;">
+                <li id="name">
+                    {{assignment.name_name}}
+                </li>
+                <li>
+                    Date: {{assignment.date}}
+                </li>
+                <li>
+                    Description: {{assignment.description}}
+                </li>
+                <li>
+                    Priority: {{assignment.priority}}
+                </li>
+                <li>
+                    Group Members: {{assignment.group_members}}
+                </li>
+                <li>
+                    Module: {{assignment.module}}
+                </li>
+
+                <li id="btn-update-item">
+                    <a href="{% url 'update-assignment' assignment.id%}">
+                        <img src="{% static 'schoolapi/images/edit.png' %}">
+                    </a>
+                </li>
+
+                <li id="btn-delete-item">
+                    <a href="{% url 'delete-assignment' assignment.id%}">
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>

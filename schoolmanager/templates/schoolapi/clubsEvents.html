@@ -1,4 +1,4 @@
-﻿{% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +10,28 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous" />
 
-    <title>Dashboard</title>
+    <title>Clubs & Events</title>
     <link rel="stylesheet" href="{% static 'schoolapi/css/style.css' %}" />
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
+<style>
+    .row {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .block {
+        width: 300px;
+        display: inline-block
+    }
+</style>
 <body>
     <div class="top-nav-container">
         <div class="wrapper">
             <nav role="main">
                 <div class="title">
-                    Finance
+                    Clubs and Events
                 </div>
 
                 <div class="logo">
@@ -42,7 +53,7 @@
 
     <div class="side-nav-container">
 
-        <div class="sidebar" style="top: 150px;">
+        <div class="sidebar" style="top: 100px;">
         </div>
 
         <div class="wrapper">
@@ -67,58 +78,92 @@
 
     </div>
 
-    <div class="finances-container">
+    <div class="club-container row">
         <div class="item-title">
-            Finance
+            Clubs
         </div>
-        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item">
+        <button type="button" onclick="window.location.href='/add-club'" class="btn-add-item" style="left: 330px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for f in finance %}
-        <div class="item-attributes">
+        {% for club in clubs %}
+        <div class="item-attributes block">
             <div class="item-background">
             </div>
-            <ul class="show-items">
-                <li id="name" style="padding-left: 25px;">
-                    Initial Budget: ${{f.initialBudget|floatformat:2}}
+            <ul class="show-items" style="position: absolute;">
+                <li id="name">
+                    {{club.name}}
                 </li>
                 <li>
-                    Income: ${{f.income|floatformat:2}}
-                </li>
-                <li>
-                    Tuition: ${{f.tuition|floatformat:2}}
-                </li>
-                <li>
-                    Equipment: ${{f.equipment|floatformat:2}}
-                </li>
-                <li>
-                    Books: ${{f.books|floatformat:2}}
+                    Meeting Time: {{club.meeting_time}}
                 </li>
 
                 <li id="btn-update-item">
-                    <a href="{% url 'update-finance' f.id%}">
+                    <a href="{% url 'update-club' club.id%}">
                         <img src="{% static 'schoolapi/images/edit.png' %}">
                     </a>
                 </li>
 
                 <li id="btn-delete-item">
-                    <a href="{% url 'delete-finance' f.id%}">
+                    <a href="{% url 'delete-club' club.id%}">
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>
 
             </ul>
 
-
-
-
         </div>
         {% endfor %}
     </div>
 
+    <div class="event-container row">
+        <div class="item-title" style="margin-top: 390px">
+            Events
+        </div>
+        <button type="button" onclick="window.location.href='/add-event'" class="btn-add-item" style="margin-top: 390px; margin-left: 50px;">
+            <img src="{% static 'schoolapi/images/add.png' %}">
+        </button>
+        {% for e in events %}
+        <div class="item-attributes block">
+            <div class="item-background">
+            </div>
+            <ul class="show-items" style="position: absolute; margin-top: 490px;">
+                <li id="name">
+                    {{e.name}}
+                </li>
+                <li>
+                    Date: {{e.date}}
+                </li>
+                <li>
+                    Description: {{e.description}}
+                </li>
+                <li>
+                    Host: {{e.host}}
+                </li>
+                <li>
+                    Room: {{e.type}}
+                </li>
+                <li>
+                    Club: {{e.club_name}}
+                </li>
 
 
+                <li id="btn-update-item">
+                    <a href="{% url 'update-event' e.id%}">
+                        <img src="{% static 'schoolapi/images/edit.png' %}">
+                    </a>
+                </li>
 
+                <li id="btn-delete-item">
+                    <a href="{% url 'delete-event' e.id%}">
+                        <img src="{% static 'schoolapi/images/Delete.png' %}">
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+        {% endfor %}
+    </div>
 
 </body>
 </html>
