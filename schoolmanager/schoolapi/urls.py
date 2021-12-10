@@ -49,11 +49,12 @@ urlpatterns = [
     path('delete-assignment/<id>', views.deleteAssignment, name='delete-assignment'),
     path('update-assignment/<id>', views.updateAssignment, name='update-assignment'),
 
-    path('add-examprep/', views.addExamPrep),
-    path('delete-examprep/<id>', views.deleteExamPrep, name='delete-examprep'),
-    path('update-examprep/<id>', views.updateExamPrep, name='update-examprep'),
+    path('add-exam-prep/', views.addExamPrep),
+    path('delete-exam-prep/<id>', views.deleteExamPrep, name='delete-exam-prep'),
+    path('update-exam-prep/<id>', views.updateExamPrep, name='update-exam-prep'),
 
     path('add-finance/', views.addFinance),
     path('delete-finance/<id>', views.deleteFinance, name='delete-finance'),
-    path('update-finance/<id>', views.updateFinance, name='update-finance'),
+    path('update-income/<id>', views.updateFinancePos, name='update-income'),
+    path('update-costs/<id>', views.updateFinanceNeg, name='update-costs')
 ]

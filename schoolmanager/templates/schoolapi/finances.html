@@ -71,59 +71,59 @@
         <div class="item-title">
             Finance
         </div>
-        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item">
+        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item" id="add">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item" style="margin-left: 50px;">
+        <!-- <button type="button" onclick="window.location.href='/add-finance'" class="btn-add-item" style="margin-left: 50px;">
             <img src="{% static 'schoolapi/images/sub.png' %}">
-        </button>
-        {% for f in finance %}
+        </button> -->
+        {% for f in user.finance_set.all %}
+        <script>
+            document.getElementById("add").style.display = "none";
+        </script>
         <div class="item-attributes">
             <div class="item-background">
             </div>
             <ul class="show-items">
-                <li id="name" style="padding-left: 25px;">
-                    Initial Budget: ${{f.initialBudget|floatformat:2}}
-                </li>
-                <li>
-                    Income: ${{f.income|floatformat:2}}
-                </li>
-                <li>
-                    Tuition: ${{f.tuition|floatformat:2}}
-                </li>
-                <li>
-                    Equipment: ${{f.equipment|floatformat:2}}
-                </li>
-                <li>
-                    Books: ${{f.books|floatformat:2}}
-                </li>
-                <li>
-                    Total: ${{f.initialBudget}}
-                </li>
-                <li id="btn-update-item">
-                    <a href="{% url 'update-finance' f.id%}">
-                        <img src="{% static 'schoolapi/images/edit.png' %}">
-                    </a>
-                </li>
-
-                <li id="btn-delete-item">
+                <div id="name">
+                    ${{f.initialBudget|floatformat:2}}
+                </div>
+                <table>
+                    <tr>
+                        <td>Income</td>
+                        <td>+${{f.income|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tuition</td>
+                        <td>-${{f.tuition|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-right: 20px;">Equipment</td>
+                        <td>-${{f.equipment|floatformat:2}}</td>
+                    </tr>
+                    <tr>
+                        <td>Books</td>
+                        <td>-${{f.books|floatformat:2}}</td>
+                    </tr>
+                </table>
+                <div id="name" style="margin-bottom: -30px;">
+                    Total: ${{f.initialBudget|floatformat:2}}
+                </div>
+                <li id="btn-delete-item" style="margin-left: 150px; margin-right: 20px;">
                     <a href="{% url 'delete-finance' f.id%}">
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>
+                <a href="{% url 'update-income' f.id%}" class="btn-add-item">
+                    <img src="{% static 'schoolapi/images/add.png' %}">
+                </a>
+                <a href="{% url 'update-costs' f.id%}" class="btn-add-item" style="margin-left: 50px;">
+                    <img src="{% static 'schoolapi/images/sub.png' %}">
+                </a>
 
             </ul>
-
-
-
-
         </div>
         {% endfor %}
     </div>
-
-
-
-
-
 </body>
 </html>

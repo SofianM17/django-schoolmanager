@@ -454,12 +454,25 @@ def deleteFinance(request, id):
         return render(request, "schoolapi/delete_view.html", {})
     return HttpResponseRedirect("/login")
 
-def updateFinance(request, id):
+def updateFinancePos(request, id):
     if request.user.is_authenticated:
         finance_data = Finance.objects.get(id=id)
-        form = FinanceForm(instance=finance_data)
+        form = FinancePosForm(instance=finance_data)
         if request.method == 'POST':
-            form = FinanceForm(request.POST, instance=finance_data)
+            form = FinancePosForm(request.POST, instance=finance_data)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect("/finances")
+
+        return render(request, 'schoolapi/forms.html', {'form': form})
+    return HttpResponseRedirect("/login")
+
+def updateFinanceNeg(request, id):
+    if request.user.is_authenticated:
+        finance_data = Finance.objects.get(id=id)
+        form = FinanceNegForm(instance=finance_data)
+        if request.method == 'POST':
+            form = FinanceNegForm(request.POST, instance=finance_data)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect("/finances")

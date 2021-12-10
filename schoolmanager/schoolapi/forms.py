@@ -231,3 +231,39 @@ class FinanceForm(ModelForm):
                 'placeholder': 'Books'
                 })
         }
+
+class FinancePosForm(ModelForm):
+    class Meta:
+        model = Finance
+        fields = ('initialBudget', 'income')
+        exclude = ('user',)
+        widgets = {
+            'initialBudget': NumberInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Initial budget'
+                }),
+            'income': NumberInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Income'
+                })
+        }
+
+class FinanceNegForm(ModelForm):
+    class Meta:
+        model = Finance
+        fields = ('tuition', 'equipment', 'books')
+        exclude = ('user',)
+        widgets = {
+            'tuition': NumberInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Tuition'
+                }),
+            'equipment': NumberInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Equipment'
+                }),
+            'books': NumberInput(attrs={
+                'class': "form-control",
+                'placeholder': 'Books'
+                })
+        }
