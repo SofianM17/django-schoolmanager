@@ -167,7 +167,12 @@ nav .username {
     color: #FFFFFF;
 }
 
+
 ul.show-items {
+    padding: 0 0 0 20px !important;
+    overflow: visible;
+    
+    position: fixed;
     display: table;
     margin: 0 auto;
     text-align: left;
@@ -188,8 +193,10 @@ ul.show-items {
 }
 
 .show-items li {
+    
+    border-left-width: 0;
+    white-space: normal;
     display: flex;
-    z-index: auto;
     margin-top: 10px;
     width: 240px;
     height: 18px;
