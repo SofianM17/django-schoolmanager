@@ -85,11 +85,11 @@
         <button type="button" onclick="window.location.href='/add-class'" class="btn-add-item">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for class in classes %}
+        {% for class in user.class_set.all %}
         <div class="item-attribute block">
             <div class="item-background">
             </div>
-            <ul class="show-items">
+            <ul class="show-items" style="position: absolute">
                 <li id="name">
                     {{class.name}}
                 </li>
