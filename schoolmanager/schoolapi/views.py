@@ -6,6 +6,8 @@ import requests
 from .forms import *
 from django.http import HttpResponseRedirect
 from django.db.models import Sum
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Create your views here.
 
@@ -14,13 +16,13 @@ class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class StudentView(viewsets.ModelViewSet):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+# class StudentView(viewsets.ModelViewSet):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
 
-class InstructorView(viewsets.ModelViewSet):
-    queryset = Instructor.objects.all()
-    serializer_class = InstructorSerializer
+# class InstructorView(viewsets.ModelViewSet):
+#     queryset = Instructor.objects.all()
+#     serializer_class = InstructorSerializer
     
 class ClassView(viewsets.ModelViewSet):
     queryset = Class.objects.all()
@@ -81,6 +83,10 @@ def dashboard(request):
     # finance = response.json()
     if request.user.is_authenticated:
         classes = Class.objects.all()
+        if request.user.is_student:
+            return render(request, "schoolapi/dashboard.html", {'classes': classes})
+        if request.user.is_instructor:
+            return render(request, "schoolapi/dashboard_instructor.html", {'classes': classes})
         return render(request, "schoolapi/dashboard.html", {'classes': classes})
     return HttpResponseRedirect("/login")
     #{"classes" : classes, 

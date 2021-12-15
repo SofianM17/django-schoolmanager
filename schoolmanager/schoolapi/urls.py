@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register('users', views.UserView)
-router.register('students', views.StudentView)
-router.register('instructors', views.InstructorView)
+# router.register('students', views.StudentView)
+# router.register('instructors', views.InstructorView)
 router.register('class', views.ClassView)
 router.register('clubs', views.ClubView)
 router.register('events', views.EventView)

@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.fields import CharField
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import User, UserManager, AbstractUser
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Create your models here.
 TYPE_CHOICES = [
@@ -116,3 +118,15 @@ class Finance(models.Model):
         return self.initialBudget + self.income - self.tuition - self.equipment - self.books
 
     #student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+# class customUser(AbstractUser):
+#     acc_types = (
+#         ('Student', 'Student'),
+#         ('Instructor', 'Instructor')
+#     )
+#     user_type = models.CharField(max_length=2,
+#                                  choices=acc_types)
+
+# class UserDetails(models.Model):
+#     type = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
+#     extra_info = models.CharField(max_length=200)

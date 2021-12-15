@@ -6,6 +6,8 @@ from django.forms.widgets import CheckboxSelectMultiple, ChoiceWidget, NumberInp
 from .models import *
 from django.forms import ModelForm, TextInput
 from django.contrib.admin import widgets
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 class ClassForm(ModelForm):
     class Meta:

@@ -8,15 +8,15 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'password', 'date_joined']
 
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = ('id', 'user', 'school', 'program')
+# class StudentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Student
+#         fields = ('id', 'user', 'school', 'program')
 
-class InstructorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Instructor
-        fields = ('id', 'user', 'school', 'faculty')
+# class InstructorSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Instructor
+#         fields = ('id', 'user', 'school', 'faculty')
 
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
