@@ -84,18 +84,18 @@
         <button type="button" onclick="window.location.href='/add-exam'" class="btn-add-item" style="left: 330px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for exam in exams %}
+        {% for exam in user.exam_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
             <ul class="show-items" style="position: absolute;">
                 <li id="name">
-                    {{exam.name}}
+                    {{exam.task_name}}
                 </li>
                 <li>
                     Date: {{exam.date}}
                 </li>
-                    <li style="overflow: auto;">
+                <li style="overflow: auto;">
                     Description: {{exam.description}}
                 </li>
                 <li>
@@ -127,7 +127,7 @@
         <button type="button" onclick="window.location.href='/add-exam-prep'" class="btn-add-item" style="margin-top: 360px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for e in exam_prep %}
+        {% for e in user.examprep_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
@@ -138,7 +138,7 @@
                 <li>
                     Prep Type: {{e.prep_type}}
                 </li>
-               
+
 
                 <li id="btn-update-item">
                     <a href="{% url 'update-exam-prep' e.id%}">
@@ -165,13 +165,13 @@
         <button type="button" onclick="window.location.href='/add-homework'" class="btn-add-item" style="margin-top: 700px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for hw in homework %}
+        {% for hw in user.homework_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
             <ul class="show-items" style="position: absolute; margin-top: 800px;">
                 <li id="name">
-                    {{hw.name}}
+                    {{hw.task_name}}
                 </li>
                 <li>
                     Date: {{hw.date}}
@@ -211,13 +211,13 @@
         <button type="button" onclick="window.location.href='/add-assignment'" class="btn-add-item" style="margin-top: 1060px; margin-left: 70px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for assignment in assignments %}
+        {% for assignment in user.assignment_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
             <ul class="show-items" style="position: absolute; margin-top: 1160px;">
                 <li id="name">
-                    {{assignment.name}}
+                    {{assignment.task_name}}
                 </li>
                 <li>
                     Date: {{assignment.date}}

@@ -419,10 +419,10 @@ def deleteExamPrep(request, id):
 
 def updateExamPrep(request, id):
     if request.user.is_authenticated:
-        examPrep_data = Homework.objects.get(id=id)
+        examPrep_data = ExamPrep.objects.get(id=id)
         form = ExamPrepForm(instance=examPrep_data)
         if request.method == 'POST':
-            form = HomeworkForm(request.POST, instance=examPrep_data)
+            form = ExamPrepForm(request.POST, instance=examPrep_data)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect("/tasks")
