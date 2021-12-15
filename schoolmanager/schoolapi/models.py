@@ -111,4 +111,8 @@ class Finance(models.Model):
     equipment = models.FloatField()
     books = models.FloatField()
 
+    @property
+    def total(self):
+        return self.initialBudget + self.income - self.tuition - self.equipment - self.books
+
     #student = models.OneToOneField(Student, on_delete=models.CASCADE)

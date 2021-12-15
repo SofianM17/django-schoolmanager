@@ -5,6 +5,7 @@ from .serializers import *
 import requests
 from .forms import *
 from django.http import HttpResponseRedirect
+from django.db.models import Sum
 
 # Create your views here.
 
