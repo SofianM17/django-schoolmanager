@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="username">
-                    Username
+                    {{user.get_username}}
                 </div>
 
                 <div class="logout" href="/login">
@@ -52,7 +52,7 @@
 
     <div class="side-nav-container">
 
-        <div class="sidebar">        
+        <div class="sidebar">
         </div>
 
         <div class="wrapper">
@@ -62,7 +62,7 @@
                         <a href="/">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/tasks_instructor">Tasks</a>
+                        <a href="/tasks">Tasks</a>
                     </li>
                 </ul>
 
@@ -108,15 +108,9 @@
                         <img src="{% static 'schoolapi/images/Delete.png' %}">
                     </a>
                 </li>
-
             </ul>
-
-           
-
-            
         </div>
         {% endfor %}
     </div>
-
 </body>
 </html>

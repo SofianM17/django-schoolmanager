@@ -101,12 +101,20 @@ def finances(request):
 
 def tasks(request):
     if request.user.is_authenticated:
-        exams = Exam.objects.all()
-        exam_prep = ExamPrep.objects.all()
-        homework = Homework.objects.all()
-        assignments = Assignment.objects.all()
-        return render(request, "schoolapi/tasks.html", {'exams': exams, 'exam_prep': exam_prep,
-        'homework': homework, 'assignments': assignments})
+        if request.user.is_student:
+            exams = Exam.objects.all()
+            exam_prep = ExamPrep.objects.all()
+            homework = Homework.objects.all()
+            assignments = Assignment.objects.all()
+            return render(request, "schoolapi/tasks.html", {'exams': exams, 'exam_prep': exam_prep,
+            'homework': homework, 'assignments': assignments})
+        if request.user.is_instructor:
+            exams = Exam.objects.all()
+            exam_prep = ExamPrep.objects.all()
+            homework = Homework.objects.all()
+            assignments = Assignment.objects.all()
+            return render(request, "schoolapi/tasks_instructor.html", {'exams': exams, 'exam_prep': exam_prep,
+            'homework': homework, 'assignments': assignments})
     return HttpResponseRedirect("/login")
 
 def clubsEvents(request):
