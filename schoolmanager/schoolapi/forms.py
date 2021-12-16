@@ -83,6 +83,9 @@ class EventForm(ModelForm):
             "name" : "Event Name",
             "type" : "Event Type",
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['club'].queryset = Club.objects.filter(user=user)
 
 class ExamForm(ModelForm):
     date = forms.DateField(widget=widgets.AdminDateWidget(attrs={
@@ -119,6 +122,9 @@ class ExamForm(ModelForm):
             "start_time" : "Start Time",
             "task_name" : "Exam Name",
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['className'].queryset = Class.objects.filter(user=user)
 
 class HomeworkForm(ModelForm):
     class Meta:
@@ -153,6 +159,9 @@ class HomeworkForm(ModelForm):
             "no_questions": 'Number of Questions',
             "date": 'Due Date'
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['className'].queryset = Class.objects.filter(user=user)
 
 class AssignmentForm(ModelForm):
     class Meta:
@@ -191,6 +200,9 @@ class AssignmentForm(ModelForm):
             "date": 'Due Date',
             "task_name" : "Assignment Name",
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['className'].queryset = Class.objects.filter(user=user)
 
 class ExamPrepForm(ModelForm):
     class Meta:
@@ -205,6 +217,9 @@ class ExamPrepForm(ModelForm):
                 'class': "form-control"
                 })
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['exam'].queryset = Exam.objects.filter(user=user)
 
 class FinanceForm(ModelForm):
     class Meta:

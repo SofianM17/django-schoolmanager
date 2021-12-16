@@ -210,7 +210,7 @@ def updateClub(request, id):
 def addEvent(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = EventForm(request.POST)
+            form = EventForm(request.POST, user=request.user)
             if form.is_valid():
                 request.user.event_set.create(
                     name=form.cleaned_data["name"],
@@ -223,7 +223,7 @@ def addEvent(request):
                 return HttpResponseRedirect("/clubsEvents")
                 
         else:
-            form = EventForm()
+            form = EventForm(user=request.user)
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -240,9 +240,9 @@ def deleteEvent(request, id):
 def updateEvent(request, id):
     if request.user.is_authenticated:
         event_data = Event.objects.get(id=id)
-        form = EventForm(instance=event_data)
+        form = EventForm(instance=event_data, user=request.user)
         if request.method == 'POST':
-            form = EventForm(request.POST, instance = event_data)
+            form = EventForm(request.POST, instance = event_data, user=request.user)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect("/clubsEvents")
@@ -254,7 +254,7 @@ def updateEvent(request, id):
 def addExam(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = ExamForm(request.POST)
+            form = ExamForm(request.POST, user=request.user)
             if form.is_valid():
                 request.user.exam_set.create(
                 className=form.cleaned_data["className"],
@@ -264,13 +264,11 @@ def addExam(request):
                 priority=form.cleaned_data["priority"],
                 start_time=form.cleaned_data["start_time"],
                 room=form.cleaned_data["room"]
-
                 )
-                #form.save()
                 return HttpResponseRedirect("/tasks")
                 
         else:
-            form = ExamForm()
+            form = ExamForm(user=request.user)
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -287,9 +285,9 @@ def deleteExam(request, id):
 def updateExam(request, id):
     if request.user.is_authenticated:
         exam_data = Exam.objects.get(id=id)
-        form = ExamForm(instance=exam_data)
+        form = ExamForm(instance=exam_data, user=request.user)
         if request.method == 'POST':
-            form = ExamForm(request.POST, instance=exam_data)
+            form = ExamForm(request.POST, instance=exam_data, user=request.user)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect("/tasks")
@@ -301,7 +299,7 @@ def updateExam(request, id):
 def addHomework(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = HomeworkForm(request.POST)
+            form = HomeworkForm(request.POST, user=request.user)
             if form.is_valid():
                 request.user.homework_set.create(
                 className=form.cleaned_data["className"],
@@ -316,7 +314,7 @@ def addHomework(request):
                 return HttpResponseRedirect("/tasks")
                 
         else:
-            form = HomeworkForm()
+            form = HomeworkForm(user=request.user)
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -333,9 +331,9 @@ def deleteHomework(request, id):
 def updateHomework(request, id):
     if request.user.is_authenticated:
         homework_data = Homework.objects.get(id=id)
-        form = HomeworkForm(instance=homework_data)
+        form = HomeworkForm(instance=homework_data, user=request.user)
         if request.method == 'POST':
-            form = HomeworkForm(request.POST, instance=homework_data)
+            form = HomeworkForm(request.POST, instance=homework_data, user=request.user)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect("/tasks")
@@ -347,7 +345,7 @@ def updateHomework(request, id):
 def addAssignment(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = AssignmentForm(request.POST)
+            form = AssignmentForm(request.POST, user=request.user)
             if form.is_valid():
                 request.user.assignment_set.create(
                     className=form.cleaned_data["className"],
@@ -361,7 +359,7 @@ def addAssignment(request):
                 #form.save()
                 return HttpResponseRedirect("/tasks")
         else:
-            form = AssignmentForm()
+            form = AssignmentForm(user=request.user)
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
@@ -379,9 +377,9 @@ def deleteAssignment(request, id):
 def updateAssignment(request, id):
     if request.user.is_authenticated:
         assignment_data = Assignment.objects.get(id=id)
-        form = AssignmentForm(instance=assignment_data)
+        form = AssignmentForm(instance=assignment_data, user=request.user)
         if request.method == 'POST':
-            form = AssignmentForm(request.POST, instance=assignment_data)
+            form = AssignmentForm(request.POST, instance=assignment_data, user=request.user)
             if form.is_valid():
                 form.save()
             # form = form.cleaned_data
@@ -402,8 +400,9 @@ def updateAssignment(request, id):
 def addExamPrep(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            form = ExamPrepForm(request.POST)
+            form = ExamPrepForm(request.POST, user=request.user)
             if form.is_valid():
+                form.instance.user = request.user
                 request.user.examprep_set.create(
                     exam=form.cleaned_data["exam"],
                     prep_type=form.cleaned_data["prep_type"],
@@ -411,7 +410,7 @@ def addExamPrep(request):
                 return HttpResponseRedirect("/tasks")
                 
         else:
-            form = ExamPrepForm()
+            form = ExamPrepForm(user=request.user)
                 
         return render(request, 'schoolapi/forms.html', {'form': form})
     return HttpResponseRedirect("/login")
