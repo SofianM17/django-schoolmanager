@@ -172,8 +172,6 @@ nav .username {
 ul.show-items {
     padding: 0 0 0 20px !important;
     overflow: visible;
-    
-    position: fixed;
     display: table;
     margin: 0 auto;
     text-align: left;
