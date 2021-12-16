@@ -62,7 +62,7 @@ class EventForm(ModelForm):
                 'placeholder': 'Name'
                 }),
             'date': widgets.AdminDateWidget(attrs={
-                'placeholder': 'Date'
+                'placeholder': 'yyyy-mm-dd'
                 }),
             'description': TextInput(attrs={
                 'class': "form-control",

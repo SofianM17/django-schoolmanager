@@ -17,6 +17,10 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "password1", "password2", "school", "is_student", "is_instructor")
+        labels = {
+            "is_student": "Student",
+            "is_instructor": "Instructor"
+        }
 
 # class RegisterForm(UserCreationForm):
 #     username = forms.CharField(
