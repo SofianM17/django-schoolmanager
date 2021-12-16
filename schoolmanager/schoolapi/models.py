@@ -82,7 +82,7 @@ class Exam(Task):
     room = models.CharField(max_length=50)
 
     def __str__(self):
-        return '%s' % (self.className)
+        return '%s' % (self.task_name)
 
 class Homework(Task):
     no_questions = models.IntegerField(blank=True)

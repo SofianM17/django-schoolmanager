@@ -51,7 +51,7 @@
 
     </div>
 
-    <div class="side-nav-container">
+    <div class="side-nav-container" style="height: 100%;">
 
         <div class="sidebar" style="top: 100px;">
         </div>
@@ -85,7 +85,7 @@
         <button type="button" onclick="window.location.href='/add-club'" class="btn-add-item" style="left: 330px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for club in clubs %}
+        {% for club in user.clubs_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
@@ -122,7 +122,7 @@
         <button type="button" onclick="window.location.href='/add-event'" class="btn-add-item" style="margin-top: 330px; margin-left: 50px;">
             <img src="{% static 'schoolapi/images/add.png' %}">
         </button>
-        {% for e in events %}
+        {% for e in user.events_set.all %}
         <div class="item-attributes block">
             <div class="item-background">
             </div>
