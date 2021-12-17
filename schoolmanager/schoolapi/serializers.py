@@ -99,6 +99,12 @@ class AssignmentSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'group_members', 'module')
 
 class ExamPrepSerializer(serializers.ModelSerializer):
+    exam = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="task_name"
+    )
+
     class Meta:
         model = ExamPrep
         fields = ('id', 'exam', 'prep_type')
