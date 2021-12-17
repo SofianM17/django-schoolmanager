@@ -48,7 +48,7 @@ class ClubForm(ModelForm):
         }
         labels = {
             "name" : "Club Name",
-            "meeting_time" : "Club Name",
+            "meeting_time" : "Meeting Time",
         }
 
 class EventForm(ModelForm):

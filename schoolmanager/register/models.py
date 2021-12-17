@@ -13,6 +13,9 @@ class CustomUser(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_instructor = models.BooleanField(default=False)
 
+    def __str__(self):
+        return '%s' % (self.username)
+
 # class UserDetails(models.Model):
 #     type = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
 

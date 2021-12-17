@@ -20,6 +20,12 @@ class UserSerializer(serializers.ModelSerializer):
 #         fields = ('id', 'user', 'school', 'faculty')
 
 class ClassSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="username"
+    )
+
     class Meta:
         model = Class
         fields = ('id', 'user', 'name', 'time', 'section', 'room')
@@ -30,21 +36,64 @@ class ClubSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'meeting_time')
 
 class EventSerializer(serializers.ModelSerializer):
+
+    club = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="name"
+    )
+
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date', 'description', 'host', 'type', 'club', 'club_name')
+        fields = ('id', 'name', 'date', 'description', 'host', 'type', 'club')
 
 class ExamSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="username"
+    )
+
+    className = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="name"
+    )
+
     class Meta:
         model = Exam
         fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'start_time', 'room')
 
 class HomeworkSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="username"
+    )
+
+    className = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="name"
+    )
+
     class Meta:
         model = Homework
         fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'no_questions')
 
 class AssignmentSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="username"
+    )
+
+    className = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="name"
+    )
+
     class Meta:
         model = Assignment
         fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'group_members', 'module')
@@ -55,6 +104,12 @@ class ExamPrepSerializer(serializers.ModelSerializer):
         fields = ('id', 'exam', 'prep_type')
 
 class FinanceSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+    many=False, 
+    read_only=True,
+    slug_field="username"
+    )
+
     class Meta:
         model = Finance
-        fields = ('id', 'initialBudget', 'income', 'tuition', 'equipment', 'books')
+        fields = ('id', 'user', 'initialBudget', 'income', 'tuition', 'equipment', 'books')

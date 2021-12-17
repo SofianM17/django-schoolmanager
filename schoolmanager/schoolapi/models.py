@@ -3,6 +3,7 @@ from django.db.models.fields import CharField
 from django.contrib.auth.models import User, UserManager, AbstractUser
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from register.models import CustomUser
 
 # Create your models here.
 TYPE_CHOICES = [
@@ -27,7 +28,7 @@ TYPE_CHOICES = [
 #        abstract = True
 
 class Class(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     time = models.TimeField(max_length=50)
     section = models.CharField(max_length=50)
@@ -38,7 +39,7 @@ class Class(models.Model):
         return '%s' % (self.name)
 
 class Club(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     meeting_time = models.TimeField(max_length=50, blank=True)
 
@@ -47,16 +48,13 @@ class Club(models.Model):
 
    
 class Event(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     date = models.DateField(max_length=50)
     description = models.CharField(max_length = 1000, blank=True)
     host = models.CharField(max_length=50, blank=True)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-
-    def club_name(self):
-        return self.club.name
     
 PRIORITY_CHOICES = [
     ('High', 'High'),
@@ -64,7 +62,7 @@ PRIORITY_CHOICES = [
     ('Low', 'Low')
 ]
 class Task(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     className = models.ForeignKey(Class, on_delete=models.CASCADE)
     task_name = models.CharField(max_length=50)
     date = models.DateField()
@@ -74,8 +72,8 @@ class Task(models.Model):
     class Meta:
         abstract=True
 
-    def name_name(self):
-        return self.name.name
+    def __str__(self):
+        return self.task_name
 
 class Exam(Task):
     start_time = models.TimeField(max_length=50)
@@ -88,14 +86,14 @@ class Homework(Task):
     no_questions = models.IntegerField(blank=True)
 
     def __str__(self):
-        return '%s' % (self.name)
+        return '%s' % (self.task_name)
 
 class Assignment(Task):
     group_members = models.CharField(max_length = 1000, blank = True)
     module = models.CharField(max_length = 50, blank = True)
 
 class ExamPrep(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
     PREP_CHOICES = [
         ('Practice Exam', 'Practice Exam'),
@@ -106,7 +104,7 @@ class ExamPrep(models.Model):
     prep_type = models.CharField(max_length = 100, choices = PREP_CHOICES)
     
 class Finance(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     initialBudget = models.FloatField()
     income = models.FloatField()
     tuition = models.FloatField()
