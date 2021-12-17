@@ -25,7 +25,7 @@
 - urllib3 1.26.7
 
 ## Installation
-1. 
+1. Clone the repository
 ```
 $ git clone https://github.com/SofianM17/django-schoolmanager
 ```
