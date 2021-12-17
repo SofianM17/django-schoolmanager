@@ -37,17 +37,17 @@ class EventSerializer(serializers.ModelSerializer):
 class ExamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exam
-        fields = ('id', 'user', 'className', 'date', 'description', 'priority', 'start_time', 'room')
+        fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'start_time', 'room')
 
 class HomeworkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Homework
-        fields = ('id', 'user', 'className', 'date', 'description', 'priority', 'no_questions')
+        fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'no_questions')
 
 class AssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment
-        fields = ('id', 'name', 'name_name', 'date', 'description', 'priority', 'group_members', 'module')
+        fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'group_members', 'module')
 
 class ExamPrepSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,6 +1,6 @@
 from django.http import request
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib.auth import get_user_model
@@ -33,3 +33,7 @@ def login(response):
         #     login(response, user)
         #     return redirect("instructor")
     return render(response, "login.html", {"form":form})
+
+def logout(response):
+    logout(response)
+    return redirect('/login')
