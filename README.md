@@ -31,7 +31,7 @@
 $ git clone https://github.com/SofianM17/django-schoolmanager
 ```
 
-2. Make sure the following stacks from [Technologies](#technologies) are installed including the following:
+2. Make sure required stacks are installed by running the command ```$ pip freeze```, which provides a list of currently installed packages. If not, install the required packages using the following commands:
 ```
 $ python -m pip install Django
 $ pip install django-crispy-forms
