@@ -25,6 +25,7 @@
 - urllib3 1.26.7
 
 ## Installation
+
 1. Clone the repository
 ```
 $ git clone https://github.com/SofianM17/django-schoolmanager
@@ -39,7 +40,7 @@ $ pip install djangorestframework
 ```
 If any technologies are still missing refer to [Technologies](#technologies) and run ```pip install``` for the rest.
 
-3. Navigate to the folder
+3. Navigate to
 ```
 $ cd ../django-schoolmanager/schoolmanager
 ```
@@ -48,7 +49,8 @@ $ cd ../django-schoolmanager/schoolmanager
 ```
 $ python manage.py runserver
 ```
-5. Navigate to the locally hosted server using the link provided by the CLI
+
+5. Navigate to the locally hosted server using the link provided by the CLI.
 
 ## Getting Started
 
