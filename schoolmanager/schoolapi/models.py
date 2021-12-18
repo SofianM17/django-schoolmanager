@@ -63,7 +63,7 @@ PRIORITY_CHOICES = [
 ]
 class Task(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    className = models.ForeignKey(Class, on_delete=models.CASCADE)
+    _Class = models.ForeignKey(Class, on_delete=models.CASCADE)
     task_name = models.CharField(max_length=50)
     date = models.DateField()
     description = models.CharField(max_length=1000, blank=True)
