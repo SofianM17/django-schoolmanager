@@ -48,7 +48,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'name', 'date', 'description', 'host', 'type', 'club')
+        fields = ('id', 'user', 'name', 'date', 'description', 'host', 'type', 'club')
 
 class ExamSerializer(serializers.ModelSerializer):
     # user = serializers.SlugRelatedField(
@@ -110,7 +110,7 @@ class ExamPrepSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExamPrep
-        fields = ('id', 'exam', 'prep_type')
+        fields = ('id', 'user', 'exam', 'prep_type')
 
 class FinanceSerializer(serializers.ModelSerializer):
     # user = serializers.SlugRelatedField(
