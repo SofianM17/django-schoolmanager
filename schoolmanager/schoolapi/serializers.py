@@ -65,7 +65,7 @@ class ExamSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Exam
-        fields = ('id', 'user', '_Class', 'task_name', 'date', 'description', 'priority', 'start_time', 'room')
+        fields = ('id', 'user', 'className', 'task_name', 'date', 'description', 'priority', 'start_time', 'room')
 
 class HomeworkSerializer(serializers.ModelSerializer):
     # user = serializers.SlugRelatedField(
