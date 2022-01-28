@@ -62,3 +62,4 @@ Once an account is created, the user may login to view their dashboard. On the l
 
 ## Demo
 ![Login and Registration Gif](https://i.gyazo.com/7bc1bee468c4d6191b2988f0607f6c19.gif)
+![Add Class Gif](https://i.gyazo.com/08e456e82f8086094436d10148a8825e.gif)
