@@ -69,3 +69,5 @@ Once an account is created, the user may login to view their dashboard. On the l
 ![Update information Gif](https://i.gyazo.com/39c15c5dd76e4501f2f44d26717484bd.gif)
 ### Delete Item
 ![Delete Item](https://i.gyazo.com/4e560b3dd00ae9d590757de5d26b8c15.gif)
+### API Endpoints
+![API Endpoints](https://i.gyazo.com/661697585d99539c3700044483217a63.gif)
