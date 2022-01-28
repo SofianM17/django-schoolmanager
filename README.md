@@ -61,7 +61,11 @@ To begin using the Study Management System, the user must register for an accoun
 Once an account is created, the user may login to view their dashboard. On the left is a navigation bar that the user can use to view different pages. Using the buttons with the plus symbol, the user may add classes, tasks, or events on their respective pages. Clicking this button will redirect the user to a form page with fields to fill out. Once the user completes filling this out, they must click the “Submit” button to display the information on their main page. Each information group is contained within a box (tile) with edit and delete icons. The user may edit the information or delete it as they wish. Editing information is similar to adding information, that is, the user will edit the fields to change any information then click “Submit” to display it. When deleting information, the user will be prompted with a confirmation before deleting. For the finance page, the user can add their initial expenses using the plus button. Once the information has been added, the user may edit their earnings and expenses using the plus and minus buttons. The calculation of the total value will be reflected each time the value changes. The finances may also be deleted to restart all the information rather than having to update everything.
 
 ## Demo
+### Login and Registration
 ![Login and Registration Gif](https://i.gyazo.com/7bc1bee468c4d6191b2988f0607f6c19.gif)
+### Add Item
 ![Add Class Gif](https://i.gyazo.com/08e456e82f8086094436d10148a8825e.gif)
+### Update Item Information
 ![Update information Gif](https://i.gyazo.com/39c15c5dd76e4501f2f44d26717484bd.gif)
-![Delete Information](https://i.gyazo.com/4e560b3dd00ae9d590757de5d26b8c15.gif)
+### Delete Item
+![Delete Item](https://i.gyazo.com/4e560b3dd00ae9d590757de5d26b8c15.gif)
